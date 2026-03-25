@@ -1,0 +1,2437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PCDF Delegado 2026 — Cronograma</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f1f5f9;
+  --s1:#ffffff;
+  --s2:#f8fafc;
+  --s3:#f1f5f9;
+  --bd:#e2e8f0;
+  --bd2:#cbd5e1;
+  --tx:#0f172a;
+  --tx2:#475569;
+  --tx3:#94a3b8;
+
+  --A:#d97706;   --Ab:rgba(217,119,6,.09);   --Abl:rgba(217,119,6,.18);
+  --R:#dc2626;   --Rb:rgba(220,38,38,.08);
+  --G:#059669;   --Gb:rgba(5,150,105,.09);
+  --B:#2563eb;   --Bb:rgba(37,99,235,.08);
+  --V:#7c3aed;
+
+  --c-con:#1d4ed8; --b-con:#eff6ff;
+  --c-adm:#6d28d9; --b-adm:#f5f3ff;
+  --c-civ:#0e7490; --b-civ:#ecfeff;
+  --c-pen:#b91c1c; --b-pen:#fef2f2;
+  --c-pro:#c2410c; --b-pro:#fff7ed;
+  --c-med:#047857; --b-med:#ecfdf5;
+  --c-tri:#92400e; --b-tri:#fffbeb;
+  --c-amb:#065f46; --b-amb:#f0fdf4;
+  --c-leg:#86198f; --b-leg:#fdf4ff;
+  --c-rev:#475569; --b-rev:#f8fafc;
+
+  --done:#059669;
+  --rd:8px;
+}
+
+body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;min-height:100vh;font-size:13px;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+input,button{font-family:inherit}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:4px}
+
+/* ═══ HEADER ═══ */
+/* ═══ HEADER ═══ */
+.hdr{
+  background:#fff;border-bottom:1px solid var(--bd);
+  padding:14px 28px;display:flex;align-items:center;gap:16px;
+  position:sticky;top:0;z-index:300;
+  box-shadow:0 1px 4px rgba(15,23,42,.06);
+}
+.hdr-logo{display:flex;align-items:center;gap:10px}
+.hdr-badge{background:var(--R);color:#fff;font-size:9px;font-weight:700;padding:3px 7px;border-radius:5px;letter-spacing:.8px}
+.hdr-title{font-size:15px;font-weight:700;color:var(--tx)}
+.hdr-sub{font-size:11px;color:var(--tx3);margin-top:1px;font-weight:400}
+.hdr-right{margin-left:auto;display:flex;align-items:center;gap:14px}
+.hdr-pbar-wrap{display:flex;align-items:center;gap:8px}
+.hdr-pbar{width:110px;height:5px;background:var(--bd);border-radius:99px;overflow:hidden}
+.hdr-pfill{height:100%;background:var(--G);border-radius:99px;transition:width .5s}
+.hdr-ppct{font-size:11px;font-weight:700;color:var(--G);font-family:'JetBrains Mono',monospace;min-width:28px}
+.hdr-cd{text-align:center;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:5px 12px}
+.hdr-cd-n{font-size:20px;font-weight:700;color:var(--R);line-height:1;font-family:'JetBrains Mono',monospace}
+.hdr-cd-l{font-size:9px;color:var(--tx3);letter-spacing:.5px}
+
+/* ═══ NAV TABS ═══ */
+.nav{background:#fff;border-bottom:1px solid var(--bd);display:flex;padding:0 28px;overflow-x:auto}
+.nav-btn{padding:10px 16px;font-size:12px;font-weight:500;color:var(--tx3);cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
+.nav-btn:hover{color:var(--tx)}
+.nav-btn.on{color:var(--B);border-bottom-color:var(--B);font-weight:600}
+
+/* ═══ LAYOUT ═══ */
+main{max-width:1180px;margin:0 auto;padding:24px 20px}
+.panel{display:none}.panel.on{display:block}
+
+/* ═══ FILTER BAR ═══ */
+.fbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+.fbar-btn{padding:5px 13px;border-radius:6px;border:1px solid var(--bd);background:#fff;color:var(--tx3);font-size:11px;font-weight:500;cursor:pointer;transition:all .15s}
+.fbar-btn:hover{border-color:var(--B);color:var(--B)}
+.fbar-btn.on{background:#eff6ff;border-color:#93c5fd;color:var(--B);font-weight:600}
+.fbar-search{flex:1;min-width:160px}
+.fbar-search input{width:100%;padding:6px 12px;background:#fff;border:1px solid var(--bd);border-radius:6px;color:var(--tx);font-size:12px;outline:none;transition:border .15s}
+.fbar-search input:focus{border-color:var(--B)}
+.fbar-search input::placeholder{color:var(--tx3)}
+
+/* ═══ DISC CHIPS ═══ */
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.chip{font-size:10px;font-weight:600;padding:3px 10px;border-radius:99px;cursor:pointer;border:1px solid transparent;transition:opacity .15s;letter-spacing:.3px}
+.chip:hover{opacity:.75}
+
+/* legend row */
+.leg-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:18px;align-items:center}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--tx3)}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* ═══ WEEK BLOCK ═══ */
+.week{margin-bottom:10px;border:1px solid var(--bd);border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(15,23,42,.04)}
+.wk-head{
+  display:flex;align-items:center;gap:10px;padding:11px 16px;
+  background:var(--s2);cursor:pointer;user-select:none;
+  border-bottom:1px solid var(--bd);transition:background .15s;
+}
+.wk-head:hover{background:#eef2f7}
+.wk-n{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.6px;min-width:64px}
+.wk-discs{display:flex;gap:4px;flex:1;flex-wrap:wrap}
+.wk-disc-tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:5px;letter-spacing:.2px}
+
+.wk-prog{display:flex;align-items:center;gap:7px;margin-left:8px}
+.wk-bar{width:72px;height:3px;background:var(--bd);border-radius:99px;overflow:hidden}
+.wk-fill{height:100%;background:var(--G);border-radius:99px;transition:width .4s}
+.wk-pct{font-size:10px;color:var(--tx3);font-family:'JetBrains Mono',monospace;min-width:26px;text-align:right}
+.wk-arrow{font-size:9px;color:var(--tx3);transition:transform .2s;margin-left:2px}
+.week.collapsed .wk-arrow{transform:rotate(-90deg)}
+.week.collapsed .wk-body{display:none}
+
+/* ═══ DAY CARD ═══ */
+.wk-body{background:#fff}
+.day-card{border-bottom:1px solid var(--bd);transition:background .15s}
+.day-card:last-child{border-bottom:none}
+.day-card:hover{background:#fafbfd}
+.day-card.d-done{background:#f0fdf9}
+
+.dc-head{display:flex;align-items:center;gap:10px;padding:12px 16px 0}
+.dc-num{
+  width:34px;height:34px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;flex-shrink:0;
+}
+.dc-info .disc-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.dc-info .disc-date{font-size:10px;color:var(--tx3);font-family:'JetBrains Mono',monospace;margin-top:1px}
+.dc-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.dc-pbar{width:56px;height:3px;background:var(--bd);border-radius:99px;overflow:hidden}
+.dc-pfill{height:100%;background:var(--G);border-radius:99px;transition:width .3s}
+.dc-ppct{font-size:10px;color:var(--tx3);font-family:'JetBrains Mono',monospace;min-width:24px;text-align:right}
+.dc-done-tag{font-size:9px;font-weight:700;background:var(--G);color:#fff;padding:2px 7px;border-radius:99px;display:none}
+.day-card.d-done .dc-done-tag{display:inline}
+.dc-chkall{
+  display:flex;align-items:center;gap:5px;font-size:10px;color:var(--tx3);
+  cursor:pointer;padding:3px 8px;border-radius:5px;
+  background:#fff;border:1px solid var(--bd);transition:all .15s;
+}
+.dc-chkall:hover{border-color:var(--G);color:var(--G)}
+.dc-chkall input{width:12px;height:12px;accent-color:var(--G);cursor:pointer}
+
+/* ─ SCHEDULE BLOCK ─ */
+.dc-schedule{padding:10px 16px 6px;display:flex;flex-direction:column;gap:6px}
+.sched-block{
+  border:1px solid var(--bd);border-radius:8px;overflow:hidden;
+  background:var(--s2);
+}
+.sched-block-head{
+  display:flex;align-items:center;gap:8px;padding:7px 12px;
+  border-bottom:1px solid var(--bd);background:var(--s3);
+}
+
+.sched-block-title{font-size:11px;font-weight:600;color:var(--tx);flex:1}
+
+.sched-block-dur{font-size:10px;color:var(--tx3);background:var(--bd);padding:2px 7px;border-radius:4px;font-family:'JetBrains Mono',monospace;flex-shrink:0}
+.sched-block-body{display:flex;flex-direction:column;gap:0}
+
+/* ─ TOPIC ITEM ─ */
+.topic{
+  display:flex;align-items:flex-start;gap:8px;
+  padding:8px 12px;border-bottom:1px solid var(--bd);
+  cursor:pointer;transition:background .12s;
+}
+.topic:last-child{border-bottom:none}
+.topic:hover{background:#f8fafc}
+.topic.t-done{background:#f0fdf9}
+.topic.t-done .t-txt{text-decoration:line-through;color:var(--tx3)}
+.topic input[type=checkbox]{width:13px;height:13px;accent-color:var(--G);cursor:pointer;flex-shrink:0;margin-top:2px}
+.t-txt{font-size:12px;line-height:1.5;flex:1;color:var(--tx2)}
+.t-badge{
+  font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;
+  flex-shrink:0;align-self:flex-start;margin-top:2px;letter-spacing:.3px;
+}
+.bH{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
+.bM{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe}
+.bL{background:#f1f5f9;color:#64748b;border:1px solid #cbd5e1}
+.bR{background:#d1fae5;color:#065f46;border:1px solid #a7f3d0}
+.bQ{background:#ede9fe;color:#5b21b6;border:1px solid #ddd6fe}
+
+/* ─ QUESTÕES COUNTER ─ */
+.dc-qrow{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 16px 12px;border-top:1px dashed var(--bd);margin-top:4px;
+}
+.dc-qlabel{font-size:11px;color:var(--tx3)}
+.dc-qinput{
+  width:60px;padding:4px 8px;background:#fff;border:1px solid var(--bd);
+  border-radius:6px;color:var(--tx);font-size:12px;text-align:center;
+  font-family:'JetBrains Mono',monospace;outline:none;transition:border .15s;
+}
+.dc-qinput:focus{border-color:var(--B)}
+.dc-qmeta{font-size:11px;color:var(--tx3)}
+.dc-qpct{font-size:11px;font-weight:700;font-family:'JetBrains Mono',monospace}
+
+/* ═══ PROGRESS TAB ═══ */
+.pg-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:20px}
+.pg-stat{background:#fff;border:1px solid var(--bd);border-radius:10px;padding:16px;border-top:3px solid transparent;box-shadow:0 1px 3px rgba(15,23,42,.04)}
+.pg-stat .sn{font-size:28px;font-weight:700;line-height:1;font-family:'JetBrains Mono',monospace}
+.pg-stat .sl{font-size:10px;color:var(--tx3);margin-top:4px;text-transform:uppercase;letter-spacing:.5px}
+
+.pg-card{background:#fff;border:1px solid var(--bd);border-radius:10px;padding:18px;margin-bottom:12px;box-shadow:0 1px 3px rgba(15,23,42,.04)}
+.pg-card h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--tx3);margin-bottom:14px}
+
+.big-bar{background:var(--bd);border-radius:99px;height:10px;overflow:hidden;margin:8px 0}
+.big-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--B),var(--G));transition:width .6s}
+.big-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--tx3);font-family:'JetBrains Mono',monospace}
+
+.disc-bars-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.db-item{background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:10px 12px}
+.db-name{font-size:11px;font-weight:600;margin-bottom:6px}
+.db-bar{background:var(--bd);border-radius:99px;height:5px;overflow:hidden;margin-bottom:4px}
+.db-fill{height:100%;border-radius:99px;transition:width .5s}
+.db-meta{display:flex;justify-content:space-between;font-size:10px;color:var(--tx3);font-family:'JetBrains Mono',monospace}
+
+.q-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.q-dcard{background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:10px 12px}
+.q-dcard .qdn{font-size:11px;font-weight:600;margin-bottom:4px}
+.q-dcard .qnum{font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;line-height:1}
+.q-dcard .qlbl{font-size:10px;color:var(--tx3);margin-top:2px}
+
+.hmap{display:grid;grid-template-columns:repeat(auto-fill,minmax(24px,1fr));gap:3px;margin-top:10px}
+.hm{
+  width:24px;height:24px;border-radius:4px;font-size:8px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:transform .12s;
+  background:var(--s2);border:1px solid var(--bd);color:var(--tx3);
+  font-family:'JetBrains Mono',monospace;
+}
+.hm:hover{transform:scale(1.25);z-index:5}
+.hm.hp{background:#fef3c7;border-color:#fde68a;color:#92400e}
+.hm.hf{background:#d1fae5;border-color:#6ee7b7;color:#065f46}
+
+/* ═══ TIPS TAB ═══ */
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.tip-card{background:#fff;border:1px solid var(--bd);border-radius:10px;padding:18px;box-shadow:0 1px 3px rgba(15,23,42,.04)}
+.tip-card h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.tip-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.tip-list li{font-size:12px;color:var(--tx2);line-height:1.55;display:flex;gap:7px;align-items:flex-start}
+.tip-list li span.bullet{flex-shrink:0;font-weight:700;margin-top:1px}
+.laws-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:5px;margin-top:8px}
+.law-tag{background:var(--s2);border:1px solid var(--bd);border-radius:5px;padding:5px 10px;font-size:11px;color:var(--tx2)}
+
+@media(max-width:680px){
+  .hdr{padding:12px 16px;flex-wrap:wrap}
+  main{padding:16px 12px}
+  .disc-bars-grid{grid-template-columns:1fr}
+  .sched-block-head{flex-wrap:wrap}
+}
+
+/* ═══ DASHBOARD ═══ */
+.db-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.db-col{display:flex;flex-direction:column;gap:16px}
+.db-card{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:20px;box-shadow:0 1px 4px rgba(15,23,42,.05)}
+.db-card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--tx3);margin-bottom:14px;display:flex;align-items:center;gap:6px}
+
+/* today highlight */
+.today-disc{font-size:22px;font-weight:700;color:var(--B);margin-bottom:2px}
+.today-date{font-size:11px;color:var(--tx3);font-family:'JetBrains Mono',monospace;margin-bottom:12px}
+.today-blocks{display:flex;flex-direction:column;gap:6px}
+.today-block{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:7px;background:var(--s2);border:1px solid var(--bd)}
+
+.today-block-title{font-size:12px;font-weight:500;color:var(--tx2);flex:1}
+
+/* mini stats row */
+.mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:0}
+.mini-stat{background:var(--s2);border:1px solid var(--bd);border-radius:8px;padding:12px;text-align:center}
+.mini-stat .mn{font-size:24px;font-weight:700;font-family:'JetBrains Mono',monospace;line-height:1}
+.mini-stat .ml{font-size:9px;color:var(--tx3);text-transform:uppercase;letter-spacing:.4px;margin-top:3px}
+
+/* overall ring progress */
+.ring-wrap{display:flex;align-items:center;gap:20px}
+.ring-svg{flex-shrink:0}
+.ring-info{flex:1}
+.ring-pct{font-size:32px;font-weight:700;color:var(--B);font-family:'JetBrains Mono',monospace;line-height:1}
+.ring-lbl{font-size:11px;color:var(--tx3);margin-top:4px}
+.ring-sub{display:flex;flex-direction:column;gap:4px;margin-top:10px}
+.ring-sub-row{display:flex;align-items:center;justify-content:space-between;font-size:11px}
+.ring-sub-bar{flex:1;height:4px;background:var(--bd);border-radius:99px;overflow:hidden;margin:0 8px}
+.ring-sub-fill{height:100%;border-radius:99px;transition:width .5s}
+
+/* lei seca tracker */
+.leis-list{display:flex;flex-direction:column;gap:6px}
+.lei-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;border:1px solid var(--bd);background:var(--s2);transition:background .15s}
+.lei-item:hover{background:#f1f5f9}
+.lei-item.lei-done{background:#f0fdf9;border-color:#bbf7d0}
+.lei-item.lei-done .lei-name{text-decoration:line-through;color:var(--tx3)}
+.lei-cb{width:15px;height:15px;accent-color:var(--G);cursor:pointer;flex-shrink:0}
+.lei-name{font-size:12px;font-weight:500;color:var(--tx2);flex:1}
+.lei-priority{font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px}
+.lei-p-H{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
+.lei-p-M{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe}
+.lei-p-L{background:#f1f5f9;color:#64748b;border:1px solid #cbd5e1}
+.lei-prog-bar{width:50px;height:4px;background:var(--bd);border-radius:99px;overflow:hidden}
+.lei-prog-fill{height:100%;background:var(--G);border-radius:99px;transition:width .4s}
+
+/* jurisprudência tracker */
+.juris-tabs{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap}
+.juris-tab{padding:4px 10px;border-radius:6px;border:1px solid var(--bd);background:transparent;font-size:11px;font-weight:500;color:var(--tx3);cursor:pointer;transition:all .15s}
+.juris-tab.on{background:#eff6ff;border-color:#93c5fd;color:var(--B);font-weight:600}
+.juris-list{display:flex;flex-direction:column;gap:5px;max-height:320px;overflow-y:auto}
+.juris-item{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;border-radius:7px;border:1px solid var(--bd);background:var(--s2);transition:background .15s}
+.juris-item:hover{background:#f8fafc}
+.juris-item.jdone{background:#f0fdf9;border-color:#bbf7d0}
+.juris-item.jdone .j-text{text-decoration:line-through;color:var(--tx3)}
+.j-cb{width:14px;height:14px;accent-color:var(--G);cursor:pointer;flex-shrink:0;margin-top:2px}
+.j-text{font-size:11px;color:var(--tx2);flex:1;line-height:1.45}
+.j-tag{font-size:9px;font-weight:700;padding:2px 5px;border-radius:4px;flex-shrink:0;white-space:nowrap}
+.j-stf{background:#ede9fe;color:#5b21b6;border:1px solid #ddd6fe}
+.j-stj{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe}
+.j-sv{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
+
+/* semana atual */
+.week-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:4px}
+.wd-cell{text-align:center;padding:6px 2px;border-radius:7px;border:1px solid var(--bd);background:var(--s2)}
+.wd-cell.wd-done{background:#d1fae5;border-color:#6ee7b7}
+.wd-cell.wd-today{border-color:var(--B);background:#eff6ff}
+.wd-cell.wd-future{opacity:.55}
+.wd-n{font-size:9px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--tx3)}
+.wd-disc{font-size:8px;font-weight:600;margin-top:2px}
+.wd-pct{font-size:9px;color:var(--tx3);font-family:'JetBrains Mono',monospace;margin-top:1px}
+
+/* meta questões */
+.meta-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.meta-label{font-size:12px;color:var(--tx2);font-weight:500}
+.meta-val{font-size:13px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.meta-bar-wrap{background:var(--bd);border-radius:99px;height:8px;overflow:hidden;margin-bottom:14px}
+.meta-bar-fill{height:100%;border-radius:99px;transition:width .5s}
+
+@media(max-width:768px){
+  .db-wrap{grid-template-columns:1fr}
+  .mini-stats{grid-template-columns:repeat(3,1fr)}
+  .week-days{grid-template-columns:repeat(7,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<div class="hdr">
+  <div class="hdr-logo">
+    <span class="hdr-badge">PCDF</span>
+    <div>
+      <div class="hdr-title">Delegado 2026 — Cronograma Estratégico</div>
+      <div class="hdr-sub">CEBRASPE · 86 dias · 5h/dia · Início 20/03/2026</div>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <div class="hdr-pbar-wrap">
+      <div class="hdr-pbar"><div class="hdr-pfill" id="hpf" style="width:0%"></div></div>
+      <span class="hdr-ppct" id="hpct">0%</span>
+    </div>
+    <div class="hdr-cd">
+      <div class="hdr-cd-n" id="cdnum">--</div>
+      <div class="hdr-cd-l">dias · 14 jun</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ NAV ═══ -->
+<div class="nav">
+  <button class="nav-btn on" onclick="goTab('sched',this)">📅 Cronograma</button>
+  <button class="nav-btn" onclick="goTab('prog',this)">📊 Progresso</button>
+  <button class="nav-btn" onclick="goTab('dash',this)">🏠 Dashboard</button>
+  <button class="nav-btn" onclick="goTab('tips',this)">🎯 Estratégia</button>
+</div>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+  CRONOGRAMA
+══════════════════════════════════════════ -->
+<div class="panel on" id="p-sched">
+
+  <div class="leg-row" style="margin-bottom:10px">
+    <span style="font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.5px">Prioridade CEBRASPE:</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#fbbf24"></span>Alto</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#60a5fa"></span>Médio</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#64748b"></span>Baixo</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#34d399"></span>Revisão</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#a78bfa"></span>Questões</span>
+  </div>
+
+  <div class="fbar">
+    <button class="fbar-btn on" onclick="setFilt('all',this)">Todos</button>
+    <button class="fbar-btn" onclick="setFilt('pend',this)">⏳ Pendentes</button>
+    <button class="fbar-btn" onclick="setFilt('done',this)">✅ Concluídos</button>
+    <div class="fbar-search"><input id="srch" placeholder="🔍  Buscar tópico ou disciplina…" oninput="doSearch()"></div>
+  </div>
+
+  <div class="chips" id="chips"></div>
+  <div id="sched-cont"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  PROGRESSO
+══════════════════════════════════════════ -->
+<div class="panel" id="p-prog">
+  <div class="pg-stats">
+    <div class="pg-stat" style="border-top-color:var(--G)"><div class="sn" id="st-top" style="color:var(--G)">0</div><div class="sl">Tópicos feitos</div></div>
+    <div class="pg-stat" style="border-top-color:var(--R)"><div class="sn" id="st-days" style="color:var(--R)">0</div><div class="sl">Dias completos</div></div>
+    <div class="pg-stat" style="border-top-color:var(--B)"><div class="sn" id="st-q" style="color:var(--B)">0</div><div class="sl">Questões feitas</div></div>
+    <div class="pg-stat" style="border-top-color:var(--A)"><div class="sn" id="st-h" style="color:var(--A)">0h</div><div class="sl">Horas investidas</div></div>
+    <div class="pg-stat" style="border-top-color:var(--tx3)"><div class="sn" id="st-rem" style="color:var(--tx3)">86</div><div class="sl">Dias restantes</div></div>
+  </div>
+
+  <div class="pg-card">
+    <h3>Progresso Geral</h3>
+    <div class="big-bar"><div class="big-fill" id="bigfill" style="width:0%"></div></div>
+    <div class="big-labels"><span id="big-done">0 tópicos feitos</span><span id="big-pct" style="color:var(--G);font-weight:700">0%</span></div>
+  </div>
+
+  <div class="pg-card">
+    <h3>Por Disciplina</h3>
+    <div class="disc-bars-grid" id="disc-bars"></div>
+  </div>
+
+  <div class="pg-card">
+    <h3>Questões por Disciplina</h3>
+    <div class="q-grid" id="q-grid"></div>
+  </div>
+
+  <div class="pg-card">
+    <h3>Mapa de Estudo — 86 Dias</h3>
+    <div class="hmap" id="hmap"></div>
+    <div style="display:flex;gap:14px;margin-top:10px;font-size:10px;color:var(--tx3);flex-wrap:wrap">
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:3px;background:var(--s3);border:1px solid var(--bd);display:inline-block"></span>Não iniciado</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:3px;background:#fef3c7;border:1px solid #fde68a;display:inline-block"></span>Parcial</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:3px;background:#d1fae5;border:1px solid #6ee7b7;display:inline-block"></span>Completo</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  ESTRATÉGIA
+══════════════════════════════════════════ -->
+<div class="panel" id="p-tips">
+  <div class="tips-grid">
+    <div class="tip-card" style="border-top:2px solid #d97706">
+      <h3 style="color:#92400e">🔥 Mais Cobrado — CEBRASPE</h3>
+      <ul class="tip-list">
+        <li><span class="bullet" style="color:#d97706">▸</span><div><strong>Direito Penal (~22q)</strong> — Teoria do crime, excludentes, crimes contra a vida/patrimônio/adm. pública, lei de drogas, crimes hediondos, organização criminosa, pacote anticrime.</div></li>
+        <li><span class="bullet" style="color:#d97706">▸</span><div><strong>Proc. Penal (~20q)</strong> — Inquérito policial, prisões (flagrante, preventiva, temporária), provas, interceptação, juiz das garantias, nulidades.</div></li>
+        <li><span class="bullet" style="color:#d97706">▸</span><div><strong>D. Constitucional (~18q)</strong> — Art. 5º CF, controle de constitucionalidade, Art. 144, Arts. 37-41 CF.</div></li>
+        <li><span class="bullet" style="color:#d97706">▸</span><div><strong>D. Administrativo (~18q)</strong> — Atos, licitações (Lei 14.133/21), servidores (Lei 8.112), improbidade, resp. do Estado.</div></li>
+      </ul>
+    </div>
+    <div class="tip-card" style="border-top:2px solid #2563eb">
+      <h3 style="color:#1e40af">📘 Cobrado Regularmente</h3>
+      <ul class="tip-list">
+        <li><span class="bullet" style="color:#2563eb">▸</span><div><strong>Medicina Legal (~10q — NOVIDADE 2026)</strong> — Tanatologia, traumatologia, asfixia, sexologia forense, psiquiatria forense, identidade judiciária.</div></li>
+        <li><span class="bullet" style="color:#2563eb">▸</span><div><strong>Direito Civil (~12q)</strong> — Negócios jurídicos, responsabilidade civil, obrigações, contratos, prescrição.</div></li>
+        <li><span class="bullet" style="color:#2563eb">▸</span><div><strong>D. Tributário (~8q)</strong> — CTN, crédito tributário, espécies tributárias, imunidades, extinção do crédito.</div></li>
+      </ul>
+    </div>
+    <div class="tip-card" style="border-top:2px solid #64748b">
+      <h3 style="color:#475569">📗 Menos Cobrado</h3>
+      <ul class="tip-list">
+        <li><span class="bullet" style="color:#64748b">▸</span><div><strong>D. Ambiental (~6q)</strong> — Lei 9.605/98 (crimes ambientais), Art. 225 CF, responsabilidade penal da pessoa jurídica.</div></li>
+        <li><span class="bullet" style="color:#64748b">▸</span><div><strong>D. Empresarial (~4q)</strong> — Empresa, sociedades, títulos de crédito (princípios cartulares).</div></li>
+        <li><span class="bullet" style="color:#64748b">▸</span><div><strong>Leg. PCDF/DF (~5q)</strong> — Lei 14.735/23, LC-DF 840/2011, SUSP, Art. 144 CF.</div></li>
+      </ul>
+    </div>
+    <div class="tip-card" style="border-top:2px solid var(--G)">
+      <h3 style="color:var(--G)">⚡ Dicas CEBRASPE</h3>
+      <ul class="tip-list">
+        <li><span class="bullet" style="color:var(--G)">▸</span>Erro anula acerto — não chute; deixe em branco se incerto.</li>
+        <li><span class="bullet" style="color:var(--G)">▸</span>Lei seca é essencial: CEBRASPE cobra literalidade dos artigos.</li>
+        <li><span class="bullet" style="color:var(--G)">▸</span>Resolva mínimo 30 questões comentadas por dia de estudo.</li>
+        <li><span class="bullet" style="color:var(--G)">▸</span>STF/STJ: jurisprudência compõe o conteúdo — estude súmulas.</li>
+        <li><span class="bullet" style="color:var(--G)">▸</span>Pacote Anticrime (Lei 13.964/19) impacta Penal e Proc. Penal.</li>
+        <li><span class="bullet" style="color:var(--G)">▸</span>Medicina Legal é novidade no edital 2026 — pode ser diferencial.</li>
+        <li><span class="bullet" style="color:var(--G)">▸</span>Últimas 2 semanas: apenas simulados cronometrados com penalização.</li>
+      </ul>
+    </div>
+    <div class="tip-card" style="border-top:2px solid var(--R);grid-column:1/-1">
+      <h3 style="color:var(--R)">📚 Leis Prioritárias — Lei Seca</h3>
+      <div class="laws-grid">
+        <div class="law-tag">CP — Código Penal (integral)</div>
+        <div class="law-tag">CPP — Código de Processo Penal</div>
+        <div class="law-tag">CF/88 — Arts. 1º-5º, 37, 41, 144</div>
+        <div class="law-tag">Lei 13.964/19 — Pacote Anticrime</div>
+        <div class="law-tag">Lei 12.850/13 — Org. Criminosa</div>
+        <div class="law-tag">Lei 11.343/06 — Lei de Drogas</div>
+        <div class="law-tag">Lei 8.072/90 — Crimes Hediondos</div>
+        <div class="law-tag">Lei 14.133/21 — Nova Licitações</div>
+        <div class="law-tag">Lei 8.429/92 — Improbidade</div>
+        <div class="law-tag">Lei 8.112/90 — Servidores Federais</div>
+        <div class="law-tag">Lei 9.296/96 — Interceptação Tel.</div>
+        <div class="law-tag">Lei 7.960/89 — Prisão Temporária</div>
+        <div class="law-tag">Lei 14.735/23 — Lei Orgânica PCDF</div>
+        <div class="law-tag">LC-DF 840/2011 — Servidores DF</div>
+        <div class="law-tag">CTN — Arts. 113-182</div>
+        <div class="law-tag">Lei 9.605/98 — Crimes Ambientais</div>
+        <div class="law-tag">Lei 11.340/06 — Maria da Penha</div>
+        <div class="law-tag">Lei 13.675/18 — SUSP</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+  DASHBOARD
+══════════════════════════════════════════ -->
+<div class="panel" id="p-dash">
+  <div class="db-wrap">
+
+    <!-- COL LEFT -->
+    <div class="db-col">
+
+      <!-- VISÃO GERAL -->
+      <div class="db-card">
+        <div class="db-card-title">🎯 Visão Geral do Cronograma</div>
+        <div class="ring-wrap">
+          <svg class="ring-svg" width="90" height="90" viewBox="0 0 90 90">
+            <circle cx="45" cy="45" r="38" fill="none" stroke="#e2e8f0" stroke-width="9"/>
+            <circle id="dash-ring" cx="45" cy="45" r="38" fill="none" stroke="#2563eb" stroke-width="9"
+              stroke-dasharray="238.76" stroke-dashoffset="238.76"
+              stroke-linecap="round" transform="rotate(-90 45 45)" style="transition:stroke-dashoffset .6s"/>
+          </svg>
+          <div class="ring-info">
+            <div class="ring-pct" id="dash-rpct">0%</div>
+            <div class="ring-lbl">do cronograma concluído</div>
+            <div class="ring-sub" id="dash-rsub"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOJE -->
+      <div class="db-card">
+        <div class="db-card-title">📅 Estudo de Hoje</div>
+        <div id="dash-today">
+          <div class="today-disc" id="dt-disc">—</div>
+          <div class="today-date" id="dt-date">—</div>
+          <div class="today-blocks" id="dt-blocks"></div>
+        </div>
+      </div>
+
+      <!-- SEMANA ATUAL -->
+      <div class="db-card">
+        <div class="db-card-title">📆 Semana Atual</div>
+        <div class="week-days" id="dash-week"></div>
+      </div>
+
+      <!-- MINI STATS -->
+      <div class="db-card">
+        <div class="db-card-title">📊 Números</div>
+        <div class="mini-stats">
+          <div class="mini-stat"><div class="mn" id="ds-days" style="color:var(--R)">0</div><div class="ml">Dias feitos</div></div>
+          <div class="mini-stat"><div class="mn" id="ds-q" style="color:var(--B)">0</div><div class="ml">Questões</div></div>
+          <div class="mini-stat"><div class="mn" id="ds-h" style="color:var(--A)">0h</div><div class="ml">Horas</div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COL RIGHT -->
+    <div class="db-col">
+
+      <!-- META QUESTÕES -->
+      <div class="db-card">
+        <div class="db-card-title">📝 Meta de Questões</div>
+        <div class="meta-row"><span class="meta-label">Meta total (86 dias × 30 q/dia)</span><span class="meta-val" id="mq-meta">2.580</span></div>
+        <div class="meta-row"><span class="meta-label">Feitas até agora</span><span class="meta-val" id="mq-done" style="color:var(--G)">0</span></div>
+        <div class="meta-bar-wrap"><div class="meta-bar-fill" id="mq-bar" style="width:0%;background:var(--G)"></div></div>
+        <div class="meta-row"><span class="meta-label">Meta de lei seca (artigos/dia)</span><span class="meta-val" style="color:var(--B)">30</span></div>
+        <div class="meta-row"><span class="meta-label">Meta de jurisprudência (itens/dia)</span><span class="meta-val" style="color:var(--V)">5</span></div>
+      </div>
+
+      <!-- LEI SECA TRACKER -->
+      <div class="db-card">
+        <div class="db-card-title">📖 Leis Prioritárias — Lei Seca</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <span style="font-size:11px;color:var(--tx3)" id="lei-prog-txt">0 / 18 lidas</span>
+          <div style="width:100px;height:5px;background:var(--bd);border-radius:99px;overflow:hidden">
+            <div id="lei-prog-bar" style="height:100%;background:var(--G);border-radius:99px;transition:width .4s;width:0%"></div>
+          </div>
+        </div>
+        <div class="leis-list" id="leis-list"></div>
+      </div>
+
+      <!-- JURISPRUDÊNCIA -->
+      <div class="db-card">
+        <div class="db-card-title">⚖️ Jurisprudência — STF / STJ</div>
+        <div class="juris-tabs">
+          <button class="juris-tab on" onclick="showJuris('all',this)">Todos</button>
+          <button class="juris-tab" onclick="showJuris('STF',this)">STF</button>
+          <button class="juris-tab" onclick="showJuris('STJ',this)">STJ</button>
+          <button class="juris-tab" onclick="showJuris('SV',this)">Súm. Vinc.</button>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-size:11px;color:var(--tx3)" id="juris-prog-txt">0 / 30 estudados</span>
+          <div style="width:100px;height:5px;background:var(--bd);border-radius:99px;overflow:hidden">
+            <div id="juris-prog-bar" style="height:100%;background:var(--V);border-radius:99px;transition:width .4s;width:0%"></div>
+          </div>
+        </div>
+        <div class="juris-list" id="juris-list"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+</main>
+
+<script>
+// ═══════════════════════════════════════════════
+// CONFIG DE DISCIPLINAS
+// ═══════════════════════════════════════════════
+const DISC={
+  "Constitucional":{c:"var(--c-con)",bg:"var(--b-con)"},
+  "Administrativo":{c:"var(--c-adm)",bg:"var(--b-adm)"},
+  "Civil":{c:"var(--c-civ)",bg:"var(--b-civ)"},
+  "Penal":{c:"var(--c-pen)",bg:"var(--b-pen)"},
+  "Proc.Penal":{c:"var(--c-pro)",bg:"var(--b-pro)"},
+  "Med.Legal":{c:"var(--c-med)",bg:"var(--b-med)"},
+  "Tributário":{c:"var(--c-tri)",bg:"var(--b-tri)"},
+  "Ambiental":{c:"var(--c-amb)",bg:"var(--b-amb)"},
+  "Leg.PCDF":{c:"var(--c-leg)",bg:"var(--b-leg)"},
+  "Empresarial":{c:"var(--c-civ)",bg:"var(--b-civ)"},
+  "Revisão":{c:"var(--c-rev)",bg:"var(--b-rev)"},
+};
+const dc=d=>DISC[d]||DISC["Revisão"];
+
+// ═══════════════════════════════════════════════
+// DADOS — 86 DIAS
+// Ciclo semanas 1-10: D1=Constitucional, D2=Administrativo,
+// D3=Civil, D4=Penal, D5=Proc.Penal, D6=Med.Legal, D7=Revisão
+// Semanas 11-12: Tributário, Ambiental, Empresarial, Leg.PCDF,
+// Revisão Geral, Simulados, Sprint Final
+//
+// Cada dia = 5h divididas em blocos realistas:
+//   Bloco 1 (1h30) = Lei seca / teoria
+//   Bloco 2 (2h)   = Questões CEBRASPE
+//   Bloco 3 (1h)   = Revisão/mapa mental
+//   Bloco 4 (30min)= Releitura pontos críticos
+//
+// H=mais cobrado, M=médio, L=menos cobrado, R=revisão, Q=questões
+// ═══════════════════════════════════════════════
+const DATA=[
+
+// ┌──────────────────────────────────────┐
+// │           SEMANA 1                   │
+// └──────────────────────────────────────┘
+
+{d:1,disc:"Constitucional",q:35,blocks:[
+  {time:"08h00–09h30",title:"✅ REVISÃO — Poder Constituinte (já estudado)",dur:"1h30",topics:[
+    {t:"[REVISÃO] Poder constituinte originário — características: inicial, incondicionado, ilimitado",b:"R"},
+    {t:"[REVISÃO] Poder constituinte derivado: reformador (PEC), revisor e decorrente",b:"R"},
+    {t:"[REVISÃO] Limitações ao poder de reforma: cláusulas pétreas (Art. 60 §4º CF)",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"NOVO — Art. 5º CF: Direitos e Garantias Individuais",dur:"2h",topics:[
+    {t:"Art. 5º CF, incisos I-XXX: igualdade, liberdade, legalidade, anterioridade penal",b:"H"},
+    {t:"Art. 5º CF, incisos XXXI-LX: devido processo legal, contraditório, ampla defesa, júri",b:"H"},
+    {t:"Art. 5º CF, incisos LXI-LXXVIII: prisão, HC, MS, MI, HD, ação popular, duração razoável",b:"H"},
+    {t:"Questões CEBRASPE — Art. 5º CF completo (35 q.)",b:"Q"},
+  ]},
+]},
+
+{d:2,disc:"Administrativo",q:30,blocks:[
+  {time:"08h00–09h30",title:"✅ REVISÃO — Princípios e Poderes Adm. (já estudado)",dur:"1h30",topics:[
+    {t:"[REVISÃO] Princípios expressos LIMPE + implícitos: razoabilidade, proporcionalidade",b:"R"},
+    {t:"[REVISÃO] Poderes: hierárquico, disciplinar, regulamentar e de polícia",b:"R"},
+    {t:"[REVISÃO] Abuso de poder: excesso de poder vs. desvio de finalidade",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"NOVO — Atos Administrativos",dur:"2h",topics:[
+    {t:"Conceito e elementos do ato administrativo: competência, forma, motivo, objeto, finalidade",b:"H"},
+    {t:"Atributos: presunção de legitimidade, imperatividade, autoexecutoriedade, tipicidade",b:"H"},
+    {t:"Vícios, convalidação; anulação (Súmula 473 STF) e revogação — distinções",b:"H"},
+    {t:"Questões CEBRASPE — atos administrativos (30 q.)",b:"Q"},
+  ]},
+]},
+
+{d:3,disc:"Civil",q:25,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Pessoa e Negócios Jurídicos",dur:"1h30",topics:[
+    {t:"Arts. 1º-69 CC: pessoa natural — capacidade, incapacidade absoluta e relativa, emancipação",b:"M"},
+    {t:"Arts. 40-69 CC: pessoa jurídica — constituição, classificação, desconsideração (Art. 50)",b:"M"},
+    {t:"Arts. 104-114 CC: requisitos do negócio jurídico — agente capaz, objeto lícito, forma",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Pessoa e Negócios Jurídicos",dur:"2h",topics:[
+    {t:"Planos do negócio jurídico: existência, validade e eficácia",b:"H"},
+    {t:"Condição, termo e encargo — distinções e efeitos",b:"M"},
+    {t:"Questões CEBRASPE — pessoa e negócios jurídicos (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:4,disc:"Penal",q:25,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Lei Penal",dur:"1h30",topics:[
+    {t:"Arts. 1º-12 CP: princípio da legalidade, retroatividade benéfica, lei penal no tempo",b:"H"},
+    {t:"Lei penal no espaço: territorialidade, extraterritorialidade condicionada/incondicionada",b:"H"},
+    {t:"Imunidades parlamentares; lei penal em relação às pessoas",b:"M"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Lei Penal e Princípios",dur:"2h",topics:[
+    {t:"Princípios: legalidade estrita, taxatividade, anterioridade, retroatividade benéfica",b:"H"},
+    {t:"Abolitio criminis vs. novatio legis incriminadora/mais gravosa — conflito no tempo",b:"H"},
+    {t:"Questões CEBRASPE — lei penal e princípios (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:5,disc:"Proc.Penal",q:30,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Inquérito Policial",dur:"1h30",topics:[
+    {t:"Arts. 4º-23 CPP: conceito, natureza jurídica, instauração, prazo, sigilo",b:"H"},
+    {t:"Arquivamento do IP: hipóteses, quem arquiva (pós-pacote anticrime — Art. 28 CPP)",b:"H"},
+    {t:"Atribuições da Polícia Civil do DF no inquérito; delegado de polícia como autoridade",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Inquérito Policial e ANPP",dur:"2h",topics:[
+    {t:"ANPP (Art. 28-A CPP): requisitos, vedações, homologação e rescisão",b:"H"},
+    {t:"Controle externo da atividade policial pelo MP (Art. 9º LC 75/93)",b:"M"},
+    {t:"Questões CEBRASPE — inquérito policial e ANPP (30 q.)",b:"Q"},
+  ]},
+]},
+
+{d:6,disc:"Med.Legal",q:25,blocks:[
+  {time:"08h00–09h30",title:"Fundamentos — Tanatologia Forense",dur:"1h30",topics:[
+    {t:"Medicina Legal: conceito, objeto, importância para a atividade policial investigativa",b:"M"},
+    {t:"Morte real: sinais negativos da vida (parada cardiorrespiratória, midríase paralítica)",b:"H"},
+    {t:"Sinais positivos da morte: livor mortis, rigor mortis, putrefação — sequência e cronologia",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Tanatologia e Tempo de Morte",dur:"2h",topics:[
+    {t:"Cronotanatognose: estimativa do tempo de morte — métodos e limitações",b:"H"},
+    {t:"Morte violenta vs. natural vs. suspeita — classificação médico-legal",b:"H"},
+    {t:"Questões CEBRASPE — tanatologia forense (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:7,disc:"Revisão",q:40,blocks:[
+  {time:"08h00–09h30",title:"Revisão — Constitucional e Administrativo",dur:"1h30",topics:[
+    {t:"Revisão: Arts. 1º-4º CF + poderes constituintes + princípios administrativos",b:"R"},
+    {t:"Pontos críticos da semana: dúvidas e lacunas identificadas",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Simulado Semana 1",dur:"2h",topics:[
+    {t:"Simulado misto: Constitucional + Administrativo + Civil + Penal + Proc. Penal (40 q.)",b:"Q"},
+    {t:"Análise de gabarito e revisão dos erros",b:"R"},
+  ]},
+  {time:"11h30–12h30",title:"Revisão — Penal e Proc. Penal",dur:"1h",topics:[
+    {t:"Revisão: lei penal + princípios + inquérito policial",b:"R"},
+  ]},
+  {time:"12h30–13h00",title:"Revisão — Medicina Legal",dur:"30min",topics:[
+    {t:"Revisão: tanatologia forense — pontos mais cobrados",b:"R"},
+  ]},
+]},
+
+// ┌──────────────────────────────────────┐
+// │           SEMANA 2                   │
+// └──────────────────────────────────────┘
+
+{d:8,disc:"Constitucional",q:35,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Art. 5º CF",dur:"1h30",topics:[
+    {t:"Art. 5º CF, incisos I-XXX: igualdade, liberdade, propriedade, sigilo, contraditório",b:"H"},
+    {t:"Art. 5º, XXXI-LX: devido processo legal, proibição de provas ilícitas, júri",b:"H"},
+    {t:"Art. 5º, LXI-LXXVIII: prisão, HC, MS, MI, HD, ação popular, razoável duração",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Art. 5º e Remédios Constitucionais",dur:"2h",topics:[
+    {t:"Remédios: HC (art. 5º LXVIII), MS individual e coletivo (LXIX/LXX), MI, HD, AP",b:"H"},
+    {t:"Distinções entre HC, MS, MI e HD — cabimento e legitimidade",b:"H"},
+    {t:"Questões CEBRASPE — Art. 5º CF completo (35 q.)",b:"Q"},
+  ]},
+]},
+
+{d:9,disc:"Administrativo",q:30,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Atos Administrativos",dur:"1h30",topics:[
+    {t:"Conceito e elementos do ato administrativo: competência, forma, motivo, objeto, finalidade",b:"H"},
+    {t:"Atributos: presunção de legitimidade, imperatividade, autoexecutoriedade, tipicidade",b:"H"},
+    {t:"Mérito administrativo: discricionariedade e vinculação",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Atos Administrativos",dur:"2h",topics:[
+    {t:"Vícios, invalidade, convalidação; anulação (Súmula 473 STF) e revogação",b:"H"},
+    {t:"Atos em espécie: decreto, portaria, resolução, circular, alvará",b:"M"},
+    {t:"Questões CEBRASPE — atos administrativos (30 q.)",b:"Q"},
+  ]},
+]},
+
+{d:10,disc:"Civil",q:25,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Vícios e Prescrição",dur:"1h30",topics:[
+    {t:"Arts. 138-165 CC: vícios do negócio jurídico — erro, dolo, coação, estado de perigo, lesão",b:"H"},
+    {t:"Arts. 166-184 CC: nulidade absoluta e anulabilidade — diferenças e efeitos",b:"H"},
+    {t:"Arts. 189-232 CC: prescrição e decadência — conceito, diferenças, prazos especiais",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Vícios e Prescrição/Decadência",dur:"2h",topics:[
+    {t:"Simulação: nulidade absoluta — efeitos para terceiros de boa-fé",b:"H"},
+    {t:"Causas impeditivas, suspensivas e interruptivas da prescrição",b:"H"},
+    {t:"Questões CEBRASPE — vícios e prescrição (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:11,disc:"Penal",q:30,blocks:[
+  {time:"08h00–09h30",title:"✅ REVISÃO — Teoria do Crime (já estudado)",dur:"1h30",topics:[
+    {t:"[REVISÃO] Conduta, resultado, nexo causal — teoria da equivalência dos antecedentes",b:"R"},
+    {t:"[REVISÃO] Tipicidade formal e material; imputação objetiva",b:"R"},
+    {t:"[REVISÃO] Dolo direto e eventual; culpa; crime preterdoloso; omissão imprópria",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"NOVO — Crimes contra a Vida (Arts. 121-128 CP)",dur:"2h",topics:[
+    {t:"Homicídio doloso simples (Art. 121 caput), qualificado (§2º) e feminicídio (§2º VI)",b:"H"},
+    {t:"Homicídio privilegiado (§1º); homicídio culposo (§3º) — distinção com dolo eventual",b:"H"},
+    {t:"Infanticídio (Art. 123) e aborto (Arts. 124-128) — tipos e excludentes legais",b:"H"},
+    {t:"Questões CEBRASPE — crimes contra a vida (30 q.)",b:"Q"},
+  ]},
+]},
+
+{d:12,disc:"Proc.Penal",q:30,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Prisão em Flagrante e Preventiva",dur:"1h30",topics:[
+    {t:"Arts. 301-311 CPP: prisão em flagrante — espécies (próprio, impróprio, presumido, preparado)",b:"H"},
+    {t:"Arts. 312-316 CPP: prisão preventiva — fundamentos, pressupostos e vedações",b:"H"},
+    {t:"Duração razoável da preventiva (Art. 316 §2º CPP — Lei 13.964/19)",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Prisão em Flagrante e Preventiva",dur:"2h",topics:[
+    {t:"Comunicação imediata ao juiz, MP e família (Art. 306 CPP) — prazo 24h",b:"H"},
+    {t:"Hipóteses de vedação da preventiva; conversão do flagrante em preventiva",b:"H"},
+    {t:"Questões CEBRASPE — prisões cautelares (30 q.)",b:"Q"},
+  ]},
+]},
+
+{d:13,disc:"Med.Legal",q:25,blocks:[
+  {time:"08h00–09h30",title:"Traumatologia Forense",dur:"1h30",topics:[
+    {t:"Lesões por instrumentos contundentes: equimoses, escoriações, lacerações, fraturas",b:"H"},
+    {t:"Lesões por instrumentos cortantes: características das feridas incisas",b:"H"},
+    {t:"Lesões perfurocontundentes e perfurocortantes — diferenças médico-legais",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Traumatologia e Arma de Fogo",dur:"2h",topics:[
+    {t:"Lesões por PAF: orifício de entrada (OE) e saída (OS) — características diagnósticas",b:"H"},
+    {t:"Queimaduras: classificação e importância no contexto criminal",b:"M"},
+    {t:"Questões CEBRASPE — traumatologia forense (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:14,disc:"Revisão",q:45,blocks:[
+  {time:"08h00–09h30",title:"Revisão — Constitucional (Art. 5º) e Administrativo",dur:"1h30",topics:[
+    {t:"Revisão: Art. 5º CF — remédios constitucionais e pontos críticos",b:"R"},
+    {t:"Revisão: atos administrativos — vícios e convalidação",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Simulado Semana 2",dur:"2h",topics:[
+    {t:"Simulado misto: todas as disciplinas da semana 2 (45 q.)",b:"Q"},
+    {t:"Análise de gabarito e correção dos erros",b:"R"},
+  ]},
+  {time:"11h30–12h30",title:"Revisão — Penal e Proc. Penal",dur:"1h",topics:[
+    {t:"Revisão: teoria do crime + fato típico + prisões cautelares",b:"R"},
+  ]},
+  {time:"12h30–13h00",title:"Revisão — Med. Legal",dur:"30min",topics:[
+    {t:"Revisão: traumatologia — pontos mais cobrados CEBRASPE",b:"R"},
+  ]},
+]},
+
+// ┌──────────────────────────────────────┐
+// │           SEMANA 3                   │
+// └──────────────────────────────────────┘
+
+{d:15,disc:"Constitucional",q:30,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Direitos Sociais e Segurança Pública",dur:"1h30",topics:[
+    {t:"Arts. 6º-11 CF: direitos sociais — saúde, educação, moradia, trabalho, greve",b:"H"},
+    {t:"Art. 144 CF: segurança pública — polícias civis, militares, federal, rodoviária federal",b:"H"},
+    {t:"Atribuições exclusivas da Polícia Civil do DF — Art. 144 §4º CF",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Direitos Sociais e Segurança Pública",dur:"2h",topics:[
+    {t:"Arts. 14-17 CF: direitos políticos — alistamento, inelegibilidades, perda e suspensão",b:"M"},
+    {t:"Arts. 18-26 CF: organização político-administrativa — DF, competências",b:"H"},
+    {t:"Questões CEBRASPE — segurança pública e organização (30 q.)",b:"Q"},
+  ]},
+]},
+
+{d:16,disc:"Administrativo",q:30,blocks:[
+  {time:"08h00–09h30",title:"✅ REVISÃO — Organização Administrativa (já estudado)",dur:"1h30",topics:[
+    {t:"[REVISÃO] Centralização, descentralização (outorga x delegação) e desconcentração",b:"R"},
+    {t:"[REVISÃO] Adm. indireta: autarquias, fundações, EP e SEM — regime jurídico",b:"R"},
+    {t:"[REVISÃO] Entidades do 3º setor: OS, OSCIP, serviços sociais autônomos",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"NOVO — Responsabilidade Civil do Estado e Controle",dur:"2h",topics:[
+    {t:"Responsabilidade civil objetiva do Estado (Art. 37 §6º CF) — teoria do risco administrativo",b:"H"},
+    {t:"Nexo causal, excludentes: caso fortuito, força maior, fato exclusivo da vítima/terceiro",b:"H"},
+    {t:"Controle da administração: interno, externo (TCU), judicial e popular (ação popular)",b:"H"},
+    {t:"Questões CEBRASPE — responsabilidade do Estado e controle (30 q.)",b:"Q"},
+  ]},
+]},
+
+{d:17,disc:"Civil",q:20,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Obrigações",dur:"1h30",topics:[
+    {t:"Arts. 233-265 CC: obrigações de dar (coisa certa/incerta), fazer e não fazer",b:"M"},
+    {t:"Arts. 266-285 CC: obrigações divisíveis, indivisíveis, solidárias",b:"M"},
+    {t:"Arts. 286-303 CC: transmissão — cessão de crédito e assunção de dívida",b:"M"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Obrigações e Extinção",dur:"2h",topics:[
+    {t:"Arts. 304-388 CC: extinção das obrigações — pagamento, consignação, novação, compensação",b:"M"},
+    {t:"Inadimplemento: mora (Arts. 394-401) e perdas e danos (Arts. 402-416)",b:"M"},
+    {t:"Questões CEBRASPE — obrigações (20 q.)",b:"Q"},
+  ]},
+]},
+
+{d:18,disc:"Penal",q:25,blocks:[
+  {time:"08h00–09h30",title:"✅ REVISÃO — Erro de Tipo e Iter Criminis (já estudado)",dur:"1h30",topics:[
+    {t:"[REVISÃO] Erro de tipo essencial/acidental; erro de proibição direto/indireto",b:"R"},
+    {t:"[REVISÃO] Excludentes de ilicitude: estado de necessidade e legítima defesa",b:"R"},
+    {t:"[REVISÃO] Iter criminis: tentativa, desistência voluntária, arrependimento eficaz",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"NOVO — Crimes Sexuais (Arts. 213-234-B CP)",dur:"2h",topics:[
+    {t:"Estupro (Art. 213): violência ou grave ameaça — consumação e tentativa",b:"H"},
+    {t:"Estupro de vulnerável (Art. 217-A): menor de 14 anos — presunção absoluta (STJ)",b:"H"},
+    {t:"Importunação sexual (Art. 215-A), assédio sexual (Art. 216-A) — elementos do tipo",b:"H"},
+    {t:"Questões CEBRASPE — crimes sexuais (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:19,disc:"Proc.Penal",q:25,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Prisão Temporária e Cautelares",dur:"1h30",topics:[
+    {t:"Lei 7.960/89: prisão temporária — prazo (5/30 dias), crimes cabíveis, prorrogação",b:"H"},
+    {t:"Art. 319 CPP: medidas cautelares diversas da prisão — rol taxativo (I a IX)",b:"H"},
+    {t:"Arts. 322-350 CPP: liberdade provisória com e sem fiança — vedações",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Cautelares e Liberdade Provisória",dur:"2h",topics:[
+    {t:"Conversão de medida cautelar em prisão preventiva (Art. 282 §4º CPP)",b:"H"},
+    {t:"Habeas corpus: cabimento, legitimidade, efeitos (Arts. 647-667 CPP)",b:"H"},
+    {t:"Questões CEBRASPE — cautelares e HC (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:20,disc:"Med.Legal",q:25,blocks:[
+  {time:"08h00–09h30",title:"Asfixiologia Forense",dur:"1h30",topics:[
+    {t:"Conceito de asfixia; espécies mecânicas: enforcamento, estrangulamento, esganadura",b:"H"},
+    {t:"Afogamento: síndrome de imersão, spasmo da glote, diatomáceas",b:"H"},
+    {t:"Sufocação (direta e indireta): soterramento, confinamento, compressão torácica",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Asfixia e Sexologia Forense",dur:"2h",topics:[
+    {t:"Sinais gerais de asfixia: cianose, petéquias subconjuntivais, ingurgitamento",b:"H"},
+    {t:"Diferença diagnóstica: enforcamento x estrangulamento x esganadura",b:"H"},
+    {t:"Questões CEBRASPE — asfixia e sexologia forense (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:21,disc:"Revisão",q:45,blocks:[
+  {time:"08h00–09h30",title:"Revisão — Constitucional e Administrativo",dur:"1h30",topics:[
+    {t:"Revisão: Art. 144 CF + organização administrativa (indireta)",b:"R"},
+    {t:"Pontos críticos da semana",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Simulado Semana 3",dur:"2h",topics:[
+    {t:"Simulado misto: todas as disciplinas semana 3 (45 q.)",b:"Q"},
+    {t:"Análise de gabarito",b:"R"},
+  ]},
+  {time:"11h30–12h30",title:"Revisão — Penal e Proc. Penal",dur:"1h",topics:[
+    {t:"Revisão: excludentes de ilicitude + cautelares processuais",b:"R"},
+  ]},
+  {time:"12h30–13h00",title:"Revisão — Med. Legal",dur:"30min",topics:[
+    {t:"Revisão: asfixia e sexologia forense",b:"R"},
+  ]},
+]},
+
+// ┌──────────────────────────────────────┐
+// │           SEMANA 4                   │
+// └──────────────────────────────────────┘
+
+{d:22,disc:"Constitucional",q:30,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Poderes Executivo e Judiciário",dur:"1h30",topics:[
+    {t:"Arts. 76-91 CF: Poder Executivo — atribuições, medidas provisórias, estado de defesa/sítio",b:"H"},
+    {t:"Arts. 92-126 CF: Poder Judiciário — STF, STJ, TST, TSE, CNJ — competências",b:"H"},
+    {t:"Arts. 127-135 CF: MP, Advocacia Pública, Defensoria Pública",b:"M"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Organização dos Poderes",dur:"2h",topics:[
+    {t:"Processo legislativo: iniciativa, emendas, votação, sanção/veto, promulgação",b:"M"},
+    {t:"Emendas constitucionais: quórum, iniciativa, cláusulas pétreas (Art. 60 §4º)",b:"H"},
+    {t:"Questões CEBRASPE — poderes e processo legislativo (30 q.)",b:"Q"},
+  ]},
+]},
+
+{d:23,disc:"Administrativo",q:30,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Servidores Públicos (Lei 8.112/90)",dur:"1h30",topics:[
+    {t:"Arts. 1º-22 Lei 8.112/90: abrangência, cargo público, provimento originário e derivado",b:"H"},
+    {t:"Arts. 23-50: posse, exercício, estágio probatório, estabilidade, vacância",b:"H"},
+    {t:"Art. 41 CF: estabilidade — prazo 3 anos + avaliação + vitaliciedade (distinção)",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Servidores (Provimento e Vacância)",dur:"2h",topics:[
+    {t:"Teto remuneratório (Art. 37, XI CF): aplicação por poder e exceções",b:"H"},
+    {t:"Remoção, redistribuição, requisição e aproveitamento — hipóteses",b:"M"},
+    {t:"Questões CEBRASPE — provimento, vacância e estabilidade (30 q.)",b:"Q"},
+  ]},
+]},
+
+{d:24,disc:"Civil",q:25,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Responsabilidade Civil",dur:"1h30",topics:[
+    {t:"Arts. 927-943 CC: responsabilidade subjetiva (culpa) e objetiva (risco)",b:"H"},
+    {t:"Arts. 944-954 CC: indenização — extensão do dano, dano moral, dano estético",b:"H"},
+    {t:"Excludentes de responsabilidade: caso fortuito, força maior, fato exclusivo da vítima/terceiro",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Responsabilidade Civil e Contratos",dur:"2h",topics:[
+    {t:"Arts. 421-480 CC: contratos — formação, função social, boa-fé objetiva",b:"M"},
+    {t:"Vícios redibitórios (Arts. 441-446) e evicção (Arts. 447-457) — distinção",b:"M"},
+    {t:"Questões CEBRASPE — resp. civil e contratos (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:25,disc:"Penal",q:25,blocks:[
+  {time:"08h00–09h30",title:"✅ REVISÃO — Iter Criminis e Concurso de Pessoas (já estudado)",dur:"1h30",topics:[
+    {t:"[REVISÃO] Iter criminis: tentativa, desistência voluntária, arrependimento eficaz",b:"R"},
+    {t:"[REVISÃO] Concurso de pessoas: autoria, coautoria, participação",b:"R"},
+    {t:"[REVISÃO] Penas e dosimetria — 3 fases; concurso material, formal, crime continuado",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"NOVO — Crimes contra a Administração Pública",dur:"2h",topics:[
+    {t:"Peculato (Art. 312): doloso, culposo, furto e desvio — diferenças",b:"H"},
+    {t:"Corrupção passiva (Art. 317) vs. corrupção ativa (Art. 333); concussão (Art. 316)",b:"H"},
+    {t:"Prevaricação (Art. 319), tráfico de influência (Art. 332), lavagem de dinheiro",b:"H"},
+    {t:"Questões CEBRASPE — crimes contra a administração pública (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:26,disc:"Proc.Penal",q:30,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Provas e Interceptação",dur:"1h30",topics:[
+    {t:"Arts. 155-250 CPP: provas — livre convencimento motivado, ônus, meios de prova",b:"H"},
+    {t:"Art. 157 CPP: prova ilícita e teoria dos frutos da árvore envenenada",b:"H"},
+    {t:"Lei 9.296/96 (interceptação telefônica): requisitos, prazo (15 dias renováveis), sigilo",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Provas e Nulidades",dur:"2h",topics:[
+    {t:"Arts. 240-250 CPP: busca e apreensão pessoal e domiciliar — mandado e dispensa",b:"H"},
+    {t:"Arts. 563-573 CPP: nulidades absolutas e relativas — princípio do prejuízo",b:"H"},
+    {t:"Questões CEBRASPE — provas, interceptação e nulidades (30 q.)",b:"Q"},
+  ]},
+]},
+
+{d:27,disc:"Med.Legal",q:25,blocks:[
+  {time:"08h00–09h30",title:"Toxicologia e Psiquiatria Forense",dur:"1h30",topics:[
+    {t:"Toxicologia forense: álcool etílico — alcoolemia, estágios da embriaguez",b:"M"},
+    {t:"Lei 12.760/12 e CTB Art. 306: valores legais de alcoolemia, crime de embriaguez ao volante",b:"M"},
+    {t:"Psiquiatria forense: critérios de imputabilidade — biológico, psicológico e biopsicológico",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Toxicologia, Psiquiatria e Identidade",dur:"2h",topics:[
+    {t:"Inimputabilidade (Art. 26 CP), semi-imputabilidade e medida de segurança",b:"H"},
+    {t:"Identidade judiciária: datiloscopia (sistema Vucetich), DNA forense, cadeia de custódia",b:"M"},
+    {t:"Questões CEBRASPE — toxicologia, psiquiatria e identidade (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:28,disc:"Revisão",q:50,blocks:[
+  {time:"08h00–09h30",title:"Revisão — Constitucional e Administrativo",dur:"1h30",topics:[
+    {t:"Revisão: poderes da República + servidores (Lei 8.112/90)",b:"R"},
+    {t:"Pontos críticos das semanas 1-4",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Simulado Geral Semanas 1-4",dur:"2h",topics:[
+    {t:"Simulado geral: Constitucional + Administrativo + Civil + Penal + Proc. Penal (50 q.)",b:"Q"},
+    {t:"Análise de gabarito e identificação de pontos fracos",b:"R"},
+  ]},
+  {time:"11h30–12h30",title:"Revisão — Penal e Proc. Penal",dur:"1h",topics:[
+    {t:"Revisão: iter criminis + provas + nulidades",b:"R"},
+  ]},
+  {time:"12h30–13h00",title:"Revisão — Med. Legal",dur:"30min",topics:[
+    {t:"Revisão: toxicologia + psiquiatria forense",b:"R"},
+  ]},
+]},
+
+// ┌──────────────────────────────────────┐
+// │           SEMANA 5                   │
+// └──────────────────────────────────────┘
+
+{d:29,disc:"Constitucional",q:35,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Controle de Constitucionalidade",dur:"1h30",topics:[
+    {t:"Controle difuso: recurso extraordinário, reserva de plenário (Súmula Vinculante 10 STF)",b:"H"},
+    {t:"Controle concentrado: ADI, ADC, ADPF, ADO — legitimados (Art. 103 CF) e efeitos",b:"H"},
+    {t:"Efeitos: erga omnes, vinculante, ex tunc/ex nunc, modulação temporal",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Controle de Constitucionalidade",dur:"2h",topics:[
+    {t:"ADPF: subsidiariedade e objeto (ato normativo municipal, lei anterior à CF/88)",b:"H"},
+    {t:"Súmula vinculante: edição, revisão, cancelamento (Art. 103-A CF) — Lei 11.417/06",b:"H"},
+    {t:"Questões CEBRASPE — controle de constitucionalidade (35 q.)",b:"Q"},
+  ]},
+]},
+
+{d:30,disc:"Administrativo",q:25,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Servidores: Deveres e PAD",dur:"1h30",topics:[
+    {t:"Arts. 116-117 Lei 8.112/90: deveres e proibições dos servidores",b:"H"},
+    {t:"Arts. 118-126: acumulação vedada de cargos — exceções constitucionais",b:"H"},
+    {t:"Arts. 143-182: processo administrativo disciplinar — sindicância e PAD (fases)",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Deveres, PAD e Responsabilidade",dur:"2h",topics:[
+    {t:"Responsabilidades civil, penal e administrativa — independência e comunicação",b:"H"},
+    {t:"Penalidades: advertência, suspensão, demissão, cassação — hipóteses (Arts. 127-135)",b:"H"},
+    {t:"Questões CEBRASPE — deveres, proibições e PAD (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:31,disc:"Civil",q:20,blocks:[
+  {time:"08h00–09h30",title:"Direitos Reais — Posse e Propriedade",dur:"1h30",topics:[
+    {t:"Arts. 1.196-1.224 CC: posse — classificação (direta/indireta, boa/má-fé), aquisição, perda",b:"M"},
+    {t:"Arts. 1.225-1.276 CC: propriedade — função social, limitações, usucapião (espécies)",b:"M"},
+    {t:"Usucapião: ordinária (10a), extraordinária (15a), especial urbana (5a) e rural (5a)",b:"M"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Família e Revisão Civil",dur:"2h",topics:[
+    {t:"Direito de família: casamento, requisitos, impedimentos, regimes de bens",b:"M"},
+    {t:"União estável: reconhecimento, dissolução, alimentos",b:"M"},
+    {t:"Questões CEBRASPE — direitos reais e família (20 q.)",b:"Q"},
+  ]},
+]},
+
+{d:32,disc:"Penal",q:30,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Crimes contra a Vida",dur:"1h30",topics:[
+    {t:"Arts. 121-128 CP: homicídio (doloso simples e qualificado, feminicídio, culposo), aborto",b:"H"},
+    {t:"Induzimento, instigação e auxílio ao suicídio ou à automutilação (Art. 122 CP — Lei 13.968/19)",b:"H"},
+    {t:"Art. 123 CP: infanticídio — estado puerperal e autoria",b:"M"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Crimes contra a Vida e Lesão",dur:"2h",topics:[
+    {t:"Arts. 129-136 CP: lesão corporal (leve, grave, gravíssima, seguida de morte, por PAF)",b:"H"},
+    {t:"Feminicídio (Art. 121 §2º VI): qualificadora objetiva — STF/STJ",b:"H"},
+    {t:"Questões CEBRASPE — crimes contra a vida e lesão (30 q.)",b:"Q"},
+  ]},
+]},
+
+{d:33,disc:"Proc.Penal",q:25,blocks:[
+  {time:"08h00–09h30",title:"Juiz das Garantias e Competência",dur:"1h30",topics:[
+    {t:"Arts. 3º-A a 3º-F CPP (Lei 13.964/19): juiz das garantias — competência e impedimento",b:"H"},
+    {t:"Arts. 69-91 CPP: competência — territorial (locus delicti), funcional, por prerrogativa",b:"M"},
+    {t:"Conexão e continência: espécies (Arts. 76-77 CPP) e efeitos",b:"M"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Competência e Ação Penal",dur:"2h",topics:[
+    {t:"Arts. 24-62 CPP: ação penal pública (incondicionada/condicionada) e privada",b:"H"},
+    {t:"Decadência (6 meses), perempção, perdão do ofendido — ação penal privada",b:"H"},
+    {t:"Questões CEBRASPE — juiz das garantias, competência e ação penal (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:34,disc:"Med.Legal",q:20,blocks:[
+  {time:"08h00–09h30",title:"Sexologia Forense e Perícias",dur:"1h30",topics:[
+    {t:"Conceitos: conjunção carnal, atentado violento ao pudor (pré-2009) e estupro",b:"H"},
+    {t:"Exame do ofendido: hímem (tipos, lesões), lesões genitais e extragenitais",b:"H"},
+    {t:"Gravidez resultante de estupro: diagnóstico, interrupção legal (Art. 128 II CP)",b:"M"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Sexologia, Identidade e Revisão",dur:"2h",topics:[
+    {t:"Exame de corpo de delito direto e indireto (Art. 158 CPP) — importância",b:"H"},
+    {t:"Laudo pericial: quesitos, assistente técnico, prazo — Art. 160 CPP",b:"M"},
+    {t:"Questões CEBRASPE — sexologia, perícias e identidade (20 q.)",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Revisão Geral Med. Legal",dur:"1h",topics:[
+    {t:"Revisão geral: tanatologia + traumatologia + asfixia + sexologia + psiquiatria",b:"R"},
+  ]},
+]},
+
+{d:35,disc:"Revisão",q:50,blocks:[
+  {time:"08h00–09h30",title:"Revisão — Controle de Constitucionalidade",dur:"1h30",topics:[
+    {t:"Revisão: ADI, ADC, ADPF, ADO + juiz das garantias",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Simulado Semana 5",dur:"2h",topics:[
+    {t:"Simulado: Constitucional + Administrativo + Penal + Proc. Penal (50 q.)",b:"Q"},
+    {t:"Análise de gabarito",b:"R"},
+  ]},
+  {time:"11h30–12h30",title:"Revisão — Parte Especial do Penal",dur:"1h",topics:[
+    {t:"Revisão: crimes contra a vida + lesão corporal",b:"R"},
+  ]},
+  {time:"12h30–13h00",title:"Revisão — Med. Legal",dur:"30min",topics:[
+    {t:"Revisão final medicina legal: todos os temas",b:"R"},
+  ]},
+]},
+
+// ┌──────────────────────────────────────┐
+// │           SEMANA 6                   │
+// └──────────────────────────────────────┘
+
+{d:36,disc:"Constitucional",q:25,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Adm. Pública na CF e Tributário",dur:"1h30",topics:[
+    {t:"Arts. 37-41 CF: adm. pública — princípios, concurso, estabilidade, teto, nepotismo",b:"H"},
+    {t:"Arts. 70-75 CF: controle externo — Tribunal de Contas, composição e competências",b:"M"},
+    {t:"Arts. 145-162 CF: sistema tributário nacional — competências e limitações",b:"M"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Adm. Pública na CF",dur:"2h",topics:[
+    {t:"Responsabilidade civil do Estado (Art. 37 §6º CF): teoria objetiva, nexo causal",b:"H"},
+    {t:"Controle da adm.: interno, externo (TCU), judicial (mandado de segurança, ação popular)",b:"H"},
+    {t:"Questões CEBRASPE — adm. pública na CF e responsabilidade (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:37,disc:"Administrativo",q:30,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Licitações (Lei 14.133/21)",dur:"1h30",topics:[
+    {t:"Arts. 1º-16 Lei 14.133/21: princípios, agentes públicos, PNCP",b:"H"},
+    {t:"Arts. 28-60: modalidades — concorrência, pregão, concurso, leilão, diálogo competitivo",b:"H"},
+    {t:"Arts. 74-75: dispensa e inexigibilidade — hipóteses e distinção",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Licitações e Fases",dur:"2h",topics:[
+    {t:"Fase preparatória, divulgação, julgamento, habilitação, recursos e adjudicação/homologação",b:"H"},
+    {t:"Sanções administrativas na Lei 14.133/21 (Arts. 156-163)",b:"M"},
+    {t:"Questões CEBRASPE — licitações Lei 14.133/21 (30 q.)",b:"Q"},
+  ]},
+]},
+
+{d:38,disc:"Civil",q:20,blocks:[
+  {time:"08h00–09h30",title:"Direito Empresarial",dur:"1h30",topics:[
+    {t:"Arts. 966-985 CC: empresa, empresário, EIRELI, inscrição, escrituração",b:"M"},
+    {t:"Sociedades empresárias: LTDA (Arts. 1.052-1.087) e SA (Lei 6.404/76) — diferenças",b:"M"},
+    {t:"Responsabilidade dos sócios: limitada (LTDA) e ilimitada (sociedade simples)",b:"M"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Empresarial e Títulos de Crédito",dur:"2h",topics:[
+    {t:"Títulos de crédito: princípios (cartularidade, literalidade, autonomia) — Arts. 887-926 CC",b:"M"},
+    {t:"Cheque, nota promissória, duplicata — características e regimes jurídicos específicos",b:"M"},
+    {t:"Questões CEBRASPE — direito empresarial e títulos (20 q.)",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Revisão Geral Civil",dur:"1h",topics:[
+    {t:"Revisão geral Civil: negócios, prescrição, resp. civil, obrigações, direitos reais",b:"R"},
+  ]},
+]},
+
+{d:39,disc:"Penal",q:30,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Crimes Patrimoniais",dur:"1h30",topics:[
+    {t:"Arts. 155-160 CP: furto (simples, qualificado, privilegiado), furto de coisa comum",b:"H"},
+    {t:"Arts. 157-160 CP: roubo (próprio/impróprio), latrocínio, extorsão, extorsão mediante sequestro",b:"H"},
+    {t:"Arts. 168-183 CP: apropriação indébita, estelionato, receptação, dano",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Crimes Patrimoniais",dur:"2h",topics:[
+    {t:"Fraude eletrônica (Art. 171 §2º-A CP — Lei 14.155/21): tipo penal e causa de aumento",b:"H"},
+    {t:"Receptação dolosa x culposa x qualificada — distinções e penas",b:"H"},
+    {t:"Questões CEBRASPE — crimes contra o patrimônio (30 q.)",b:"Q"},
+  ]},
+]},
+
+{d:40,disc:"Proc.Penal",q:25,blocks:[
+  {time:"08h00–09h30",title:"Cadeia de Custódia e Procedimentos",dur:"1h30",topics:[
+    {t:"Arts. 158-A a 158-F CPP: cadeia de custódia — conceito, fases, quebra e consequências",b:"H"},
+    {t:"Arts. 394-497 CPP: procedimentos ordinário, sumário, sumaríssimo (JECRIM)",b:"M"},
+    {t:"Lei 9.099/95: JECRIM — conciliação, transação penal, suspensão condicional do processo",b:"M"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Cadeia de Custódia e Tribunal do Júri",dur:"2h",topics:[
+    {t:"Tribunal do Júri: princípios (plenitude de defesa, sigilo, soberania), procedimento bifásico",b:"H"},
+    {t:"Arts. 406-497 CPP: 1ª fase (sumário da culpa) e 2ª fase (plenário) — atos principais",b:"H"},
+    {t:"Questões CEBRASPE — cadeia de custódia e júri (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:41,disc:"Med.Legal",q:20,blocks:[
+  {time:"08h00–09h30",title:"Revisão Completa Med. Legal",dur:"1h30",topics:[
+    {t:"Revisão: tanatologia — sinais da morte, cronotanatognose, fenômenos cadavéricos",b:"R"},
+    {t:"Revisão: traumatologia — tipos de feridas, PAF (OE e OS), queimaduras",b:"R"},
+    {t:"Revisão: asfixia, sexologia, toxicologia, psiquiatria forense",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Revisão Geral Med. Legal",dur:"2h",topics:[
+    {t:"Questões CEBRASPE — medicina legal completo (20 q.)",b:"Q"},
+    {t:"Análise das questões erradas e revisão dos pontos",b:"R"},
+  ]},
+  {time:"11h30–12h30",title:"Legislação PCDF — Introdução",dur:"1h",topics:[
+    {t:"Lei 14.735/23 — Lei Orgânica Nacional das Polícias Civis: estrutura, delegado como bacharel",b:"H"},
+    {t:"Atribuições do delegado de polícia: presidência do IP, autoridade policial",b:"H"},
+  ]},
+]},
+
+{d:42,disc:"Revisão",q:50,blocks:[
+  {time:"08h00–09h30",title:"Revisão — Licitações e Crimes Patrimoniais",dur:"1h30",topics:[
+    {t:"Revisão: Lei 14.133/21 + crimes patrimoniais",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Simulado Semana 6",dur:"2h",topics:[
+    {t:"Simulado: todas as disciplinas semana 6 (50 q.)",b:"Q"},
+    {t:"Análise de gabarito",b:"R"},
+  ]},
+  {time:"11h30–12h30",title:"Revisão — Controle Constitucional + Adm. Pública",dur:"1h",topics:[
+    {t:"Revisão: controle concentrado + responsabilidade do Estado",b:"R"},
+  ]},
+  {time:"12h30–13h00",title:"Revisão — Cadeia de Custódia",dur:"30min",topics:[
+    {t:"Revisão: Arts. 158-A a 158-F CPP",b:"R"},
+  ]},
+]},
+
+// ┌──────────────────────────────────────┐
+// │           SEMANA 7                   │
+// └──────────────────────────────────────┘
+
+{d:43,disc:"Constitucional",q:25,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Jurisprudência Constitucional",dur:"1h30",topics:[
+    {t:"Súmulas vinculantes STF 1-56: destaque para as mais cobradas em provas de delegado",b:"H"},
+    {t:"Jurisprudência STF sobre Art. 5º CF — incisos mais cobrados",b:"H"},
+    {t:"Temas de repercussão geral: liberdades fundamentais e segurança pública",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Jurisprudência e Adm. Pública na CF",dur:"2h",topics:[
+    {t:"Revisão constitucional: Arts. 37-41 CF + Art. 144 + controle de constitucionalidade",b:"R"},
+    {t:"Questões CEBRASPE — jurisprudência constitucional (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:44,disc:"Administrativo",q:30,blocks:[
+  {time:"08h00–09h30",title:"Contratos Administrativos e Improbidade",dur:"1h30",topics:[
+    {t:"Arts. 89-154 Lei 14.133/21: contratos — cláusulas exorbitantes, equilíbrio econômico-financeiro",b:"H"},
+    {t:"Lei 8.429/92 + Lei 14.230/21: reforma da improbidade — dolo específico, rol de atos",b:"H"},
+    {t:"Sanções da improbidade (Arts. 9º-12): suspensão de direitos políticos, proibição, ressarcimento",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Contratos e Improbidade",dur:"2h",topics:[
+    {t:"Ação de improbidade: competência, legitimidade, prescricional (8 anos pós-reforma)",b:"H"},
+    {t:"Responsabilidade civil do Estado: dano anônimo, falha do serviço (faute du service)",b:"H"},
+    {t:"Questões CEBRASPE — contratos e improbidade (30 q.)",b:"Q"},
+  ]},
+]},
+
+{d:45,disc:"Civil",q:20,blocks:[
+  {time:"08h00–09h30",title:"Revisão Geral Civil",dur:"1h30",topics:[
+    {t:"Revisão: pessoa, negócios jurídicos, vícios, prescrição, resp. civil, contratos",b:"R"},
+    {t:"Revisão: obrigações, direitos reais, família, empresarial, títulos de crédito",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Simulado Civil Completo",dur:"2h",topics:[
+    {t:"Simulado Direito Civil e Empresarial completo (20 q.)",b:"Q"},
+    {t:"Análise e revisão dos erros",b:"R"},
+  ]},
+  {time:"11h30–12h30",title:"Pontos Mais Cobrados — Civil",dur:"1h",topics:[
+    {t:"Pontos CEBRASPE: responsabilidade civil + negócios jurídicos + prescrição",b:"H"},
+  ]},
+]},
+
+{d:46,disc:"Penal",q:30,blocks:[
+  {time:"08h00–09h30",title:"Crimes Sexuais e Adm. Pública",dur:"1h30",topics:[
+    {t:"Arts. 213-234-B CP: estupro, estupro de vulnerável, importunação sexual, assédio",b:"H"},
+    {t:"Lei 13.718/18: divulgação de cena de estupro/nudez sem consentimento",b:"H"},
+    {t:"Arts. 312-359-H CP: peculato, corrupção passiva/ativa, concussão, prevaricação",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Crimes Sexuais e contra Adm. Pública",dur:"2h",topics:[
+    {t:"Corrupção passiva x concussão x excesso de exação — distinções práticas",b:"H"},
+    {t:"Lavagem de dinheiro (Lei 9.613/98): fases, autonomia, rol de crimes antecedentes",b:"H"},
+    {t:"Questões CEBRASPE — crimes sexuais e contra adm. pública (30 q.)",b:"Q"},
+  ]},
+]},
+
+{d:47,disc:"Proc.Penal",q:25,blocks:[
+  {time:"08h00–09h30",title:"Recursos e Execução Penal",dur:"1h30",topics:[
+    {t:"Arts. 574-667 CPP: recursos — apelação (Art. 593), RESE (Art. 581), embargos de declaração",b:"M"},
+    {t:"Efeito devolutivo e suspensivo; prazo e legitimidade para recurso",b:"M"},
+    {t:"LEP (Lei 7.210/84): regime inicial, progressão (requisito objetivo e subjetivo)",b:"M"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Recursos, Execução e Revisão",dur:"2h",topics:[
+    {t:"Livramento condicional (Arts. 83-90 CP): requisitos e condições",b:"M"},
+    {t:"Infiltração policial (Arts. 10-10D Lei 12.850/13): virtual, prazo, sigilo",b:"H"},
+    {t:"Questões CEBRASPE — recursos e execução penal (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:48,disc:"Revisão",q:25,blocks:[
+  {time:"08h00–09h30",title:"Leg. PCDF — Revisão",dur:"1h30",topics:[
+    {t:"LC-DF 840/2011 — Regime Jurídico dos Servidores do DF: pontos críticos",b:"H"},
+    {t:"Lei 14.735/23: organização das polícias civis — estrutura nacional",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Legislação PCDF",dur:"2h",topics:[
+    {t:"Organização geopolítica do DF: regiões administrativas, CLDF, Governador",b:"M"},
+    {t:"Lei 13.675/18 — SUSP: princípios, SINESP, INFOSEG, integração das forças",b:"M"},
+    {t:"Questões: legislação específica PCDF/DF (25 q.)",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Revisão — Penal Semana 7",dur:"1h",topics:[
+    {t:"Revisão: crimes sexuais + crimes contra adm. pública + lavagem de dinheiro",b:"R"},
+  ]},
+]},
+
+{d:49,disc:"Revisão",q:55,blocks:[
+  {time:"08h00–09h30",title:"Revisão — Administrativo e Constitucional",dur:"1h30",topics:[
+    {t:"Revisão: contratos, improbidade, responsabilidade do Estado, jurisprudência constitucional",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Simulado Geral Semanas 5-7",dur:"2h",topics:[
+    {t:"Simulado geral acumulado: todas as disciplinas (55 q.)",b:"Q"},
+    {t:"Análise de gabarito e revisão dos erros",b:"R"},
+  ]},
+  {time:"11h30–12h30",title:"Revisão — Penal e Proc. Penal",dur:"1h",topics:[
+    {t:"Revisão: recursos, execução penal, crimes sexuais",b:"R"},
+  ]},
+  {time:"12h30–13h00",title:"Revisão — Leg. PCDF",dur:"30min",topics:[
+    {t:"Revisão: Lei 14.735/23 + LC-DF 840/2011",b:"R"},
+  ]},
+]},
+
+// ┌──────────────────────────────────────┐
+// │           SEMANA 8 — Leg. Especial   │
+// └──────────────────────────────────────┘
+
+{d:50,disc:"Penal",q:25,blocks:[
+  {time:"08h00–09h30",title:"Lei Seca — Crimes Hediondos",dur:"1h30",topics:[
+    {t:"Lei 8.072/90: rol de crimes hediondos e equiparados (tráfico, terrorismo, tortura)",b:"H"},
+    {t:"Regime inicial, progressão (pós-STF: inconstitucionalidade do fechado obrigatório)",b:"H"},
+    {t:"Vedações: fiança, anistia, graça, indulto (ressalva Lei 13.964/19)",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Crimes Hediondos e Lei de Drogas",dur:"2h",topics:[
+    {t:"Lei 11.343/06: usuário (Art. 28) x traficante (Art. 33) — critérios do juiz",b:"H"},
+    {t:"Associação para o tráfico (Art. 35), financiamento (Art. 36), causas de aumento (Art. 40)",b:"H"},
+    {t:"Questões CEBRASPE — hediondos e lei de drogas (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:51,disc:"Penal",q:30,blocks:[
+  {time:"08h00–09h30",title:"Organização Criminosa — Lei 12.850/13",dur:"1h30",topics:[
+    {t:"Art. 1º §1º: conceito legal de organização criminosa — 4 requisitos cumulativos",b:"H"},
+    {t:"Arts. 3º-7º: meios especiais de investigação — colaboração premiada, ação controlada",b:"H"},
+    {t:"Arts. 10-10D: infiltração de agentes — virtual (lei 13.441/17), prazo e procedimento",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Org. Criminosa e Pacote Anticrime",dur:"2h",topics:[
+    {t:"Lei 13.964/19 — Pacote Anticrime: alterações no CP, CPP e leis especiais",b:"H"},
+    {t:"ANPP (Art. 28-A CPP), juiz das garantias (Arts. 3º-A a F), cadeia de custódia",b:"H"},
+    {t:"Questões CEBRASPE — org. criminosa e pacote anticrime (30 q.)",b:"Q"},
+  ]},
+]},
+
+{d:52,disc:"Penal",q:25,blocks:[
+  {time:"08h00–09h30",title:"Legislação Penal Especial Diversa",dur:"1h30",topics:[
+    {t:"Lei 11.340/06 — Maria da Penha: conceito de violência doméstica, medidas protetivas",b:"H"},
+    {t:"Lei 7.716/89 — Racismo: crimes de preconceito de raça/cor/etnia; injúria racial",b:"H"},
+    {t:"Lei 9.455/97 — Tortura: tipos penais, sujeito ativo (próprio x impróprio)",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Legislação Especial",dur:"2h",topics:[
+    {t:"Lei 13.869/19 — Abuso de autoridade: condutas típicas do delegado de polícia",b:"H"},
+    {t:"Lei 13.260/16 — Terrorismo: atos preparatórios, financiamento",b:"M"},
+    {t:"Questões CEBRASPE — legislação penal especial diversa (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:53,disc:"Administrativo",q:25,blocks:[
+  {time:"08h00–09h30",title:"Revisão Geral Administrativo",dur:"1h30",topics:[
+    {t:"Revisão: princípios, atos, org. adm., servidores (Lei 8.112), licitações (Lei 14.133/21)",b:"R"},
+    {t:"Revisão: contratos, improbidade (Lei 8.429/92), responsabilidade do Estado",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Simulado Direito Administrativo",dur:"2h",topics:[
+    {t:"Simulado completo Direito Administrativo (25 q.)",b:"Q"},
+    {t:"Análise e revisão dos erros",b:"R"},
+  ]},
+  {time:"11h30–12h30",title:"Pontos Críticos Adm. — CEBRASPE",dur:"1h",topics:[
+    {t:"Pontos mais cobrados: atos + licitações + improbidade + servidores",b:"H"},
+  ]},
+]},
+
+{d:54,disc:"Proc.Penal",q:25,blocks:[
+  {time:"08h00–09h30",title:"Revisão Geral Proc. Penal",dur:"1h30",topics:[
+    {t:"Revisão: inquérito + ação penal + prisões + provas + interceptação + nulidades",b:"R"},
+    {t:"Revisão: juiz das garantias + competência + júri + recursos + execução",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Simulado Proc. Penal",dur:"2h",topics:[
+    {t:"Simulado completo Direito Processual Penal (25 q.)",b:"Q"},
+    {t:"Análise e revisão dos erros",b:"R"},
+  ]},
+  {time:"11h30–12h30",title:"Jurisprudência Proc. Penal — STJ/STF",dur:"1h",topics:[
+    {t:"STF/STJ: entendimentos mais cobrados em Proc. Penal (prisão, provas, nulidades)",b:"H"},
+  ]},
+]},
+
+{d:55,disc:"Penal",q:25,blocks:[
+  {time:"08h00–09h30",title:"Revisão Geral Direito Penal",dur:"1h30",topics:[
+    {t:"Revisão: teoria do crime (tipicidade, ilicitude, culpabilidade)",b:"R"},
+    {t:"Revisão: iter criminis, penas, concurso, crimes em espécie (pessoa, patrimônio, sexuais)",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Simulado Direito Penal",dur:"2h",topics:[
+    {t:"Simulado completo Direito Penal — parte geral + especial (25 q.)",b:"Q"},
+    {t:"Análise e revisão dos erros",b:"R"},
+  ]},
+  {time:"11h30–12h30",title:"Jurisprudência Penal — STF/STJ",dur:"1h",topics:[
+    {t:"STF/STJ: entendimentos recentes — feminicídio, hediondos, tráfico, org. criminosa",b:"H"},
+  ]},
+]},
+
+{d:56,disc:"Revisão",q:55,blocks:[
+  {time:"08h00–09h30",title:"Revisão — Hediondos, Drogas, Org. Criminosa",dur:"1h30",topics:[
+    {t:"Revisão: Lei 8.072/90 + Lei 11.343/06 + Lei 12.850/13",b:"R"},
+    {t:"Revisão: Maria da Penha + abuso de autoridade + tortura + racismo",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Simulado Geral Semana 8",dur:"2h",topics:[
+    {t:"Simulado geral: Penal + Proc. Penal + legislação especial (55 q.)",b:"Q"},
+    {t:"Análise de gabarito",b:"R"},
+  ]},
+  {time:"11h30–12h30",title:"Revisão — Administrativo",dur:"1h",topics:[
+    {t:"Revisão pós-simulado: pontos críticos Administrativo",b:"R"},
+  ]},
+  {time:"12h30–13h00",title:"Revisão — Proc. Penal",dur:"30min",topics:[
+    {t:"Revisão pós-simulado: pontos críticos Proc. Penal",b:"R"},
+  ]},
+]},
+
+// ┌──────────────────────────────────────┐
+// │  SEMANA 9 — Tributário + Ambiental   │
+// │  + Empresarial + Leg. PCDF           │
+// └──────────────────────────────────────┘
+
+{d:57,disc:"Tributário",q:25,blocks:[
+  {time:"08h00–09h30",title:"Sistema Tributário Nacional",dur:"1h30",topics:[
+    {t:"Arts. 145-156 CF: princípios — legalidade, isonomia, anterioridade, irretroatividade, não confisco",b:"M"},
+    {t:"Imunidades tributárias: recíproca (Art. 150, VI, a), cultural, religiosa, política",b:"M"},
+    {t:"Espécies tributárias: imposto, taxa, contribuição de melhoria, empréstimo compulsório",b:"M"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — CTN e Obrigação Tributária",dur:"2h",topics:[
+    {t:"Arts. 113-150 CTN: obrigação tributária (principal/acessória), fato gerador, sujeitos",b:"M"},
+    {t:"Arts. 139-150 CTN: crédito tributário — lançamento de ofício, declaração e homologação",b:"M"},
+    {t:"Questões CEBRASPE — sistema tributário e obrigação (25 q.)",b:"Q"},
+  ]},
+]},
+
+{d:58,disc:"Tributário",q:20,blocks:[
+  {time:"08h00–09h30",title:"Crédito Tributário e Extinção",dur:"1h30",topics:[
+    {t:"Art. 151 CTN: suspensão — moratória, parcelamento, depósito, recursos, liminar",b:"M"},
+    {t:"Arts. 156-174 CTN: extinção — pagamento, prescrição (5a), decadência (5a), compensação, remissão",b:"M"},
+    {t:"Arts. 175-182 CTN: exclusão — isenção e anistia (distinção fundamental)",b:"M"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Extinção e Impostos",dur:"2h",topics:[
+    {t:"Arts. 121-138 CTN: responsabilidade tributária dos sucessores e de terceiros",b:"M"},
+    {t:"Impostos em espécie: IR (União), ICMS (Estado), ISS (Município) — hipóteses de incidência",b:"M"},
+    {t:"Questões CEBRASPE — extinção e impostos em espécie (20 q.)",b:"Q"},
+  ]},
+]},
+
+{d:59,disc:"Ambiental",q:20,blocks:[
+  {time:"08h00–09h30",title:"Direito Ambiental — Crimes Ambientais",dur:"1h30",topics:[
+    {t:"Art. 225 CF: meio ambiente ecologicamente equilibrado — direito difuso, responsabilidade objetiva",b:"L"},
+    {t:"Lei 9.605/98: crimes contra fauna (Arts. 29-37) e flora (Arts. 38-53)",b:"H"},
+    {t:"Crimes de poluição (Arts. 54-61) e contra a adm. ambiental (Arts. 66-69-A)",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Crimes Ambientais",dur:"2h",topics:[
+    {t:"Responsabilidade penal da pessoa jurídica (Art. 3º Lei 9.605/98) — critérios STJ",b:"M"},
+    {t:"Desconsideração da personalidade jurídica no direito ambiental (Art. 4º Lei 9.605/98)",b:"M"},
+    {t:"Questões CEBRASPE — crimes ambientais (20 q.)",b:"Q"},
+  ]},
+]},
+
+{d:60,disc:"Leg.PCDF",q:20,blocks:[
+  {time:"08h00–09h30",title:"Legislação Específica PCDF/DF",dur:"1h30",topics:[
+    {t:"Lei 14.735/23: estrutura das polícias civis, delegado como bacharel em Direito",b:"H"},
+    {t:"LC-DF 840/2011: regime jurídico dos servidores do DF — pontos específicos",b:"H"},
+    {t:"Organização geopolítica do DF: regiões administrativas, Lei Orgânica",b:"M"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Legislação PCDF",dur:"2h",topics:[
+    {t:"Lei 13.675/18 — SUSP: Sistema Único de Segurança Pública, SINESP, INFOSEG",b:"M"},
+    {t:"Estatuto da PCDF: hierarquia, carreiras, delegado-chefe",b:"H"},
+    {t:"Questões CEBRASPE — legislação específica PCDF/DF (20 q.)",b:"Q"},
+  ]},
+]},
+
+{d:61,disc:"Tributário",q:20,blocks:[
+  {time:"08h00–09h30",title:"Revisão Geral Tributário",dur:"1h30",topics:[
+    {t:"Revisão: sistema tributário na CF + CTN — obrigação, crédito, extinção, exclusão",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Simulado Tributário",dur:"2h",topics:[
+    {t:"Simulado completo Direito Tributário (20 q.)",b:"Q"},
+    {t:"Análise e revisão dos erros",b:"R"},
+  ]},
+  {time:"11h30–12h30",title:"Revisão Ambiental + Empresarial",dur:"1h",topics:[
+    {t:"Revisão: Lei 9.605/98 pontos mais cobrados + empresarial: títulos de crédito",b:"R"},
+  ]},
+]},
+
+{d:62,disc:"Revisão",q:25,blocks:[
+  {time:"08h00–09h30",title:"Revisão — Tributário + Ambiental + Leg. PCDF",dur:"1h30",topics:[
+    {t:"Revisão completa: tributário + ambiental + empresarial + leg. PCDF/DF",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Simulado Semana 9",dur:"2h",topics:[
+    {t:"Simulado misto: Tributário + Ambiental + Empresarial + Leg. PCDF (25 q.)",b:"Q"},
+    {t:"Análise de gabarito",b:"R"},
+  ]},
+  {time:"11h30–12h30",title:"Revisão — Legislação Especial Penal",dur:"1h",topics:[
+    {t:"Revisão: hediondos, drogas, org. criminosa, pacote anticrime",b:"R"},
+  ]},
+  {time:"12h30–13h00",title:"Revisão — Leg. PCDF",dur:"30min",topics:[
+    {t:"Revisão: Lei 14.735/23 + LC-DF 840/2011 — pontos mais cobrados",b:"R"},
+  ]},
+]},
+
+{d:63,disc:"Revisão",q:30,blocks:[
+  {time:"08h00–09h30",title:"Revisão Final — Disciplinas de Menor Peso",dur:"1h30",topics:[
+    {t:"Revisão final: Tributário + Ambiental + Empresarial + Leg. PCDF",b:"R"},
+    {t:"Lacunas identificadas nos simulados anteriores",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Questões Mistas — Disciplinas Finais",dur:"2h",topics:[
+    {t:"Questões mistas: Civil + Tributário + Ambiental + Leg. PCDF (30 q.)",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Planejamento Sprint Final",dur:"1h",topics:[
+    {t:"Revisão do cronograma e planejamento das semanas 10-12",b:"R"},
+    {t:"Identificação dos 10 tópicos com maior probabilidade de cair na prova",b:"R"},
+  ]},
+]},
+
+// ┌──────────────────────────────────────┐
+// │     SEMANA 10 — REVISÃO GERAL        │
+// └──────────────────────────────────────┘
+
+{d:64,disc:"Revisão",q:40,blocks:[
+  {time:"08h00–09h30",title:"Revisão Geral — Constitucional",dur:"1h30",topics:[
+    {t:"Revisão: Arts. 1º-5º + Art. 37-41 + Art. 144 CF",b:"R"},
+    {t:"Revisão: controle de constitucionalidade + jurisprudência STF",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Constitucional",dur:"2h",topics:[
+    {t:"Questões CEBRASPE — Constitucional: 40 q. focadas nos pontos mais errados",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Lei Seca — Releitura Constitucional",dur:"1h",topics:[
+    {t:"Releitura: Art. 5º CF completo + Art. 144 CF",b:"R"},
+  ]},
+  {time:"12h30–13h00",title:"Pontos Críticos",dur:"30min",topics:[
+    {t:"Anotações dos pontos críticos constitucionais para releitura final",b:"R"},
+  ]},
+]},
+
+{d:65,disc:"Revisão",q:40,blocks:[
+  {time:"08h00–09h30",title:"Revisão Geral — Administrativo",dur:"1h30",topics:[
+    {t:"Revisão: princípios + atos + organização + licitações (Lei 14.133/21)",b:"R"},
+    {t:"Revisão: servidores (Lei 8.112/90) + improbidade + responsabilidade do Estado",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Administrativo",dur:"2h",topics:[
+    {t:"Questões CEBRASPE — Administrativo: 40 q. focadas nos pontos mais errados",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Lei Seca — Releitura Administrativo",dur:"1h",topics:[
+    {t:"Releitura: Lei 8.112/90 arts. chave + Lei 14.133/21 pontos críticos",b:"R"},
+  ]},
+  {time:"12h30–13h00",title:"Pontos Críticos",dur:"30min",topics:[
+    {t:"Anotações dos pontos críticos Administrativo",b:"R"},
+  ]},
+]},
+
+{d:66,disc:"Revisão",q:40,blocks:[
+  {time:"08h00–09h30",title:"Revisão Geral — Penal",dur:"1h30",topics:[
+    {t:"Revisão: teoria do crime + excludentes + culpabilidade + iter criminis + penas",b:"R"},
+    {t:"Revisão: crimes em espécie — vida, patrimônio, sexuais, adm. pública",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Penal",dur:"2h",topics:[
+    {t:"Questões CEBRASPE — Penal: 40 q. focadas nos pontos mais errados",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Lei Seca — Releitura Penal",dur:"1h",topics:[
+    {t:"Releitura: CP parte geral Arts. 1º-120 — pontos críticos",b:"R"},
+  ]},
+  {time:"12h30–13h00",title:"Pontos Críticos",dur:"30min",topics:[
+    {t:"Anotações dos pontos críticos Penal",b:"R"},
+  ]},
+]},
+
+{d:67,disc:"Revisão",q:40,blocks:[
+  {time:"08h00–09h30",title:"Revisão Geral — Proc. Penal",dur:"1h30",topics:[
+    {t:"Revisão: inquérito + ação penal + prisões + provas + nulidades + competência",b:"R"},
+    {t:"Revisão: juiz das garantias + júri + recursos + execução penal",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Proc. Penal",dur:"2h",topics:[
+    {t:"Questões CEBRASPE — Proc. Penal: 40 q. focadas nos pontos mais errados",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Lei Seca — Releitura Proc. Penal",dur:"1h",topics:[
+    {t:"Releitura: CPP arts. chave — 4º-23, 155-157, 301-316, 563-573",b:"R"},
+  ]},
+  {time:"12h30–13h00",title:"Pontos Críticos",dur:"30min",topics:[
+    {t:"Anotações dos pontos críticos Proc. Penal",b:"R"},
+  ]},
+]},
+
+{d:68,disc:"Revisão",q:35,blocks:[
+  {time:"08h00–09h30",title:"Revisão — Legislação Especial Penal",dur:"1h30",topics:[
+    {t:"Revisão: hediondos + drogas + org. criminosa + pacote anticrime",b:"R"},
+    {t:"Revisão: Maria da Penha + abuso de autoridade + tortura + racismo",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Questões — Legislação Especial",dur:"2h",topics:[
+    {t:"Questões CEBRASPE — legislação especial: 35 q.",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Revisão — Med. Legal + Leg. PCDF",dur:"1h",topics:[
+    {t:"Revisão: medicina legal (todos os temas) + legislação específica PCDF/DF",b:"R"},
+  ]},
+  {time:"12h30–13h00",title:"Pontos Críticos",dur:"30min",topics:[
+    {t:"Anotações finais: pontos de maior risco na prova",b:"R"},
+  ]},
+]},
+
+{d:69,disc:"Revisão",q:35,blocks:[
+  {time:"08h00–09h30",title:"Revisão — Civil + Tributário + Ambiental",dur:"1h30",topics:[
+    {t:"Revisão: Civil + Empresarial + Tributário + Ambiental",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Questões Mistas Finais",dur:"2h",topics:[
+    {t:"Questões mistas: Civil + Tributário + Ambiental + Empresarial + Leg. PCDF (35 q.)",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Lei Seca — Releitura Final",dur:"1h",topics:[
+    {t:"Releitura: leis especiais — Lei 11.343, Lei 12.850, Lei 14.735/23",b:"R"},
+  ]},
+  {time:"12h30–13h00",title:"Pontos Críticos",dur:"30min",topics:[
+    {t:"Revisão final das anotações críticas de todas as disciplinas",b:"R"},
+  ]},
+]},
+
+{d:70,disc:"Revisão",q:60,blocks:[
+  {time:"08h00–09h30",title:"Preparação para Simulado Geral",dur:"1h30",topics:[
+    {t:"Revisão rápida: principais pontos de todas as disciplinas",b:"R"},
+    {t:"Estratégia para a prova: gestão do tempo, marcação, revisão de gabarito",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"SIMULADO GERAL 1",dur:"2h",topics:[
+    {t:"Simulado Geral 1 — 120 questões estilo CEBRASPE (todas as disciplinas)",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Análise de Gabarito",dur:"1h",topics:[
+    {t:"Análise do simulado: identificar disciplinas e tópicos com mais erros",b:"R"},
+  ]},
+  {time:"12h30–13h00",title:"Planejamento de Revisão",dur:"30min",topics:[
+    {t:"Planejar os pontos de revisão para as semanas 11-12",b:"R"},
+  ]},
+]},
+
+// ┌──────────────────────────────────────┐
+// │     SEMANA 11 — PÓS-SIMULADO 1      │
+// └──────────────────────────────────────┘
+
+{d:71,disc:"Revisão",q:30,blocks:[
+  {time:"08h00–09h30",title:"Revisão Pós-Simulado 1 — Constitucional + Adm.",dur:"1h30",topics:[
+    {t:"Correção dos erros do Simulado 1: Constitucional e Administrativo",b:"R"},
+    {t:"Lei seca: releitura dos artigos mais errados",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Questões Temáticas — Erros do Simulado",dur:"2h",topics:[
+    {t:"Questões focadas nos temas mais errados: Constitucional + Adm. (30 q.)",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Revisão — Penal + Proc. Penal",dur:"1h",topics:[
+    {t:"Revisão pós-simulado: Penal + Proc. Penal — pontos mais errados",b:"R"},
+  ]},
+]},
+
+{d:72,disc:"Revisão",q:30,blocks:[
+  {time:"08h00–09h30",title:"Revisão Pós-Simulado 1 — Penal + Proc. Penal",dur:"1h30",topics:[
+    {t:"Correção dos erros do Simulado 1: Penal e Proc. Penal",b:"R"},
+    {t:"Lei seca: releitura dos artigos mais errados do CP e CPP",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Questões Temáticas — Penal + Proc. Penal",dur:"2h",topics:[
+    {t:"Questões focadas nos temas mais errados: Penal + Proc. Penal (30 q.)",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Jurisprudência STF/STJ",dur:"1h",topics:[
+    {t:"STF/STJ: entendimentos mais cobrados — revisão das súmulas vinculantes",b:"H"},
+  ]},
+]},
+
+{d:73,disc:"Revisão",q:30,blocks:[
+  {time:"08h00–09h30",title:"Revisão — Med. Legal + Legislação Especial",dur:"1h30",topics:[
+    {t:"Revisão pós-simulado: Medicina Legal + legislação penal especial",b:"R"},
+    {t:"Pontos de risco: tanatologia, traumatologia, hediondos, Maria da Penha",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Questões Temáticas — Med. Legal + Leg. Especial",dur:"2h",topics:[
+    {t:"Questões focadas: Med. Legal + Leg. Especial (30 q.)",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Revisão — Civil + Tributário",dur:"1h",topics:[
+    {t:"Revisão pós-simulado: Civil + Tributário — pontos mais errados",b:"R"},
+  ]},
+]},
+
+{d:74,disc:"Revisão",q:120,blocks:[
+  {time:"08h00–09h30",title:"Preparação para Simulado Geral 2",dur:"1h30",topics:[
+    {t:"Revisão estratégica: os 20 artigos mais cobrados de cada disciplina",b:"R"},
+    {t:"Técnica de prova: administração do tempo, leitura do enunciado, marcação",b:"R"},
+  ]},
+  {time:"09h30–12h00",title:"SIMULADO GERAL 2 — Cronometrado",dur:"2h30",topics:[
+    {t:"Simulado Geral 2 — 120 questões (tempo máximo: 3h30)",b:"Q"},
+    {t:"Treino psicológico: marcação assertiva, penalização por erro",b:"R"},
+  ]},
+  {time:"12h00–12h30",title:"Análise de Gabarito",dur:"30min",topics:[
+    {t:"Conferência do gabarito e cálculo de aproveitamento por disciplina",b:"R"},
+  ]},
+  {time:"12h30–13h00",title:"Planejamento Sprint Final",dur:"30min",topics:[
+    {t:"Planejar os últimos 12 dias: focar nos pontos mais errados",b:"R"},
+  ]},
+]},
+
+{d:75,disc:"Revisão",q:30,blocks:[
+  {time:"08h00–09h30",title:"Revisão Pós-Simulado 2 — Maiores Erros",dur:"1h30",topics:[
+    {t:"Correção dos erros do Simulado 2: disciplinas com maior número de erros",b:"R"},
+    {t:"Jurisprudência STF/STJ: súmulas e entendimentos recentes",b:"H"},
+  ]},
+  {time:"09h30–11h30",title:"Questões Temáticas Pós-Simulado 2",dur:"2h",topics:[
+    {t:"Questões focadas nos maiores erros do Simulado 2 (30 q.)",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Lei Seca — Artigos Críticos",dur:"1h",topics:[
+    {t:"Releitura: CF arts. 5º, 37, 41, 144 + CP parte geral + CPP principais",b:"R"},
+  ]},
+]},
+
+{d:76,disc:"Revisão",q:25,blocks:[
+  {time:"08h00–09h30",title:"Sprint Final — Penal + Proc. Penal",dur:"1h30",topics:[
+    {t:"Lei seca: CP arts. 1º-120 (parte geral) — leitura rápida com foco nos críticos",b:"R"},
+    {t:"Lei seca: CPP arts. mais cobrados — leitura seletiva",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Questões Sprint Final — Penal + Proc. Penal",dur:"2h",topics:[
+    {t:"Questões de consolidação: Penal + Proc. Penal (25 q.)",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Sprint Final — Constitucional + Adm.",dur:"1h",topics:[
+    {t:"Lei seca: Art. 5º, Art. 37, Art. 144 + Lei 8.112/90 arts. chave",b:"R"},
+    {t:"Jurisprudência constitucional e administrativa final",b:"H"},
+  ]},
+]},
+
+{d:77,disc:"Revisão",q:25,blocks:[
+  {time:"08h00–09h30",title:"Sprint Final — Legislação Especial",dur:"1h30",topics:[
+    {t:"Releitura: Lei 12.850/13 (org. criminosa) + Lei 11.343/06 (drogas)",b:"R"},
+    {t:"Releitura: Lei 8.072/90 (hediondos) + Lei 11.340/06 (Maria da Penha)",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Questões Sprint Final — Leg. Especial + PCDF",dur:"2h",topics:[
+    {t:"Questões de consolidação: legislação especial + PCDF (25 q.)",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Sprint Final — Med. Legal + Tributário + Ambiental",dur:"1h",topics:[
+    {t:"Releitura: medicina legal (quadro síntese) + Lei 9.605/98 crimes principais",b:"R"},
+    {t:"Releitura: CTN arts. críticos + imunidades tributárias",b:"R"},
+  ]},
+]},
+
+// ┌──────────────────────────────────────┐
+// │  SEMANA 12 — SPRINT FINAL            │
+// └──────────────────────────────────────┘
+
+{d:78,disc:"Revisão",q:20,blocks:[
+  {time:"08h00–09h30",title:"Sprint Final — Constitucional",dur:"1h30",topics:[
+    {t:"Flashcards: Art. 5º CF — os 20 incisos mais cobrados",b:"R"},
+    {t:"Flashcards: controle de constitucionalidade — ADI, ADC, ADPF, ADO",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Questões Finais — Constitucional + Adm.",dur:"2h",topics:[
+    {t:"Questões estratégicas: temas com maior probabilidade de cair (20 q.)",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Sprint Final — Administrativo",dur:"1h",topics:[
+    {t:"Flashcards: atos administrativos + licitações + improbidade",b:"R"},
+  ]},
+]},
+
+{d:79,disc:"Revisão",q:20,blocks:[
+  {time:"08h00–09h30",title:"Sprint Final — Penal",dur:"1h30",topics:[
+    {t:"Flashcards: crimes contra a vida — qualificadoras e excludentes",b:"R"},
+    {t:"Flashcards: crimes patrimoniais — distinções e majorantes",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Questões Finais — Penal",dur:"2h",topics:[
+    {t:"Questões estratégicas Penal: parte especial (20 q.)",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Sprint Final — Proc. Penal",dur:"1h",topics:[
+    {t:"Flashcards: prisões cautelares + provas + nulidades",b:"R"},
+  ]},
+]},
+
+{d:80,disc:"Revisão",q:20,blocks:[
+  {time:"08h00–09h30",title:"Sprint Final — Legislação Especial",dur:"1h30",topics:[
+    {t:"Flashcards: Lei 12.850/13 — conceito org. criminosa + colaboração premiada",b:"R"},
+    {t:"Flashcards: Lei 11.343/06 — Art. 28 x 33 + Art. 40 (majorantes)",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Questões Finais — Legislação Especial",dur:"2h",topics:[
+    {t:"Questões estratégicas: legislação especial + Med. Legal (20 q.)",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Sprint Final — Med. Legal + PCDF",dur:"1h",topics:[
+    {t:"Flashcards: medicina legal — tanatologia, traumatologia, asfixia",b:"R"},
+    {t:"Releitura: Lei 14.735/23 + LC-DF 840 pontos finais",b:"R"},
+  ]},
+]},
+
+{d:81,disc:"Revisão",q:20,blocks:[
+  {time:"08h00–09h30",title:"Sprint Final — Tributário + Ambiental + Civil",dur:"1h30",topics:[
+    {t:"Flashcards: Tributário — extinção do crédito + imunidades + espécies",b:"R"},
+    {t:"Flashcards: Ambiental — crimes fauna/flora + resp. PJ + Art. 225 CF",b:"R"},
+  ]},
+  {time:"09h30–11h30",title:"Questões Finais — Tributário + Ambiental + Civil",dur:"2h",topics:[
+    {t:"Questões estratégicas: Civil + Tributário + Ambiental (20 q.)",b:"Q"},
+  ]},
+  {time:"11h30–12h30",title:"Sprint Final — Jurisprudência",dur:"1h",topics:[
+    {t:"Súmulas vinculantes STF mais cobradas + entendimentos STJ em Proc. Penal",b:"H"},
+  ]},
+  {time:"12h30–13h00",title:"Revisão Final",dur:"30min",topics:[
+    {t:"Última revisão dos pontos mais críticos identificados",b:"R"},
+  ]},
+]},
+
+{d:82,disc:"Revisão",q:0,blocks:[
+  {time:"08h00–09h30",title:"Revisão Leve — Constitucional + Administrativo",dur:"1h30",topics:[
+    {t:"Leitura de resumos: Arts. 5º, 37, 41, 144 CF",b:"R"},
+    {t:"Leitura de resumos: Lei 8.112/90 + Lei 14.133/21 pontos chave",b:"R"},
+  ]},
+  {time:"09h30–11h00",title:"Revisão Leve — Penal + Proc. Penal",dur:"1h30",topics:[
+    {t:"Leitura de resumos: CP parte geral + parte especial pontos críticos",b:"R"},
+    {t:"Leitura de resumos: CPP artigos mais cobrados",b:"R"},
+  ]},
+  {time:"11h00–12h00",title:"Revisão Leve — Legislação Especial",dur:"1h",topics:[
+    {t:"Leitura de resumos: hediondos + drogas + org. criminosa + Maria da Penha",b:"R"},
+  ]},
+  {time:"12h00–13h00",title:"Descanso Mental",dur:"1h",topics:[
+    {t:"Sem estudo novo — relaxamento, hidratação, alimentação adequada",b:"R"},
+  ]},
+]},
+
+{d:83,disc:"Revisão",q:0,blocks:[
+  {time:"08h00–09h00",title:"Revisão Ultra-Leve — Flashcards",dur:"1h",topics:[
+    {t:"Últimos flashcards: artigos mais críticos de cada disciplina (máx. 1h)",b:"R"},
+  ]},
+  {time:"09h00–10h00",title:"Preparação Logística",dur:"1h",topics:[
+    {t:"Separar documentos: RG/CPF, comprovante de inscrição, local de prova",b:"R"},
+    {t:"Verificar trajeto, horário, alimentação — dia da prova",b:"R"},
+  ]},
+  {time:"10h00–13h00",title:"DESCANSO OBRIGATÓRIO",dur:"3h",topics:[
+    {t:"Não iniciar conteúdo novo — o cérebro precisa consolidar o aprendizado",b:"R"},
+    {t:"Dormir cedo: sono de qualidade é essencial para o rendimento na prova",b:"R"},
+  ]},
+]},
+
+{d:84,disc:"Revisão",q:0,blocks:[
+  {time:"08h00–12h00",title:"🏆 PROVA OBJETIVA — DELEGADO PCDF",dur:"até 4h",topics:[
+    {t:"PROVA OBJETIVA: Constitucional + Administrativo + Civil + Penal + Proc. Penal + Med. Legal",b:"H"},
+    {t:"Estratégia: leia todas as questões, marque as que sabe, volte nas difíceis",b:"R"},
+    {t:"Atenção: errar anula acerto — deixe em branco quando não tiver segurança",b:"H"},
+  ]},
+  {time:"14h00–20h00",title:"🏆 PROVA DISCURSIVA — DELEGADO PCDF",dur:"até 6h",topics:[
+    {t:"PROVA DISCURSIVA: redija com clareza, fundamente juridicamente, cite artigos",b:"H"},
+    {t:"Organize o tempo: leia todas as questões discursivas antes de começar",b:"R"},
+  ]},
+]},
+
+// Dias 85-86: reserva estratégica (mantidos como revisão livre)
+{d:85,disc:"Revisão",q:0,blocks:[
+  {time:"—",title:"Reserva Estratégica",dur:"—",topics:[
+    {t:"Este dia pode ser usado para revisão de emergência ou descanso pré-resultado",b:"R"},
+    {t:"Se a prova foi no dia 84: relaxe e aguarde o resultado",b:"R"},
+  ]},
+]},
+
+{d:86,disc:"Revisão",q:0,blocks:[
+  {time:"—",title:"Reserva Estratégica",dur:"—",topics:[
+    {t:"Reserva para eventual necessidade de revisão ou conteúdo não finalizado",b:"R"},
+    {t:"Você chegou até aqui — 86 dias de dedicação à aprovação! 🏆",b:"R"},
+  ]},
+]},
+
+]; // fim DATA
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+const EXAM=new Date(2026,5,14);
+const START=new Date(2026,2,20);
+
+// ── PRÉ-MARCAÇÃO: tópicos já estudados ──
+// Roda antes de qualquer render para que o progresso já reflita esses tópicos
+(function(){
+  const PREMARKED = ["1_0_0","1_0_1","1_0_2","2_0_0","2_0_1","2_0_2",
+    "11_0_0","11_0_1","11_0_2","16_0_0","16_0_1","16_0_2",
+    "18_0_0","18_0_1","18_0_2","25_0_0","25_0_1","25_0_2"];
+  const stored = JSON.parse(localStorage.getItem('pcdf26v2')||'{}');
+  if(!stored.t) stored.t={};
+  if(!stored.q) stored.q={};
+  PREMARKED.forEach(k=>{ stored.t[k]=true; });
+  localStorage.setItem('pcdf26v2', JSON.stringify(stored));
+})();
+// ── FIM PRÉ-MARCAÇÃO ──
+
+let S=JSON.parse(localStorage.getItem('pcdf26v2')||'{}');
+if(!S.t)S.t={};
+if(!S.q)S.q={};
+function save(){localStorage.setItem('pcdf26v2',JSON.stringify(S))}
+
+function tk(d,bi,ti){return `${d}_${bi}_${ti}`}
+function dayDate(n){
+  const dt=new Date(START);dt.setDate(dt.getDate()+n-1);
+  const w=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+  const m=['Jan','Fev','Mar','Abr','Mai','Jun'];
+  return `${w[dt.getDay()]}, ${dt.getDate()} ${m[dt.getMonth()]}`;
+}
+function allTopics(d){
+  const out=[];
+  d.blocks.forEach((b,bi)=>b.topics.forEach((_,ti)=>out.push(tk(d.d,bi,ti))));
+  return out;
+}
+function dayDone(d){return allTopics(d).every(k=>S.t[k])}
+function dayPct(d){
+  const keys=allTopics(d);
+  if(!keys.length)return 0;
+  return Math.round(keys.filter(k=>S.t[k]).length/keys.length*100);
+}
+function totalTopics(){return DATA.reduce((s,d)=>s+allTopics(d).length,0)}
+function doneTopics(){return DATA.reduce((s,d)=>s+allTopics(d).filter(k=>S.t[k]).length,0)}
+function totalQ(){return Object.values(S.q).reduce((s,v)=>s+v,0)}
+
+// ═══════════════════════════════════════════════
+// BUILD CHIPS
+// ═══════════════════════════════════════════════
+let activeDisc='';
+function buildChips(){
+  const el=document.getElementById('chips');
+  el.innerHTML=Object.keys(DISC).map(name=>{
+    const d=dc(name);
+    return `<span class="chip" style="background:${d.bg};color:${d.c};border-color:${d.c}22"
+      onclick="filtDisc('${name}',this)" id="chip-${name}">${name}</span>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════
+let fMode='all', fSearch='';
+let colW={};
+
+function render(){
+  const cont=document.getElementById('sched-cont');
+  const weeks=[];
+  for(let i=0;i<DATA.length;i+=7)weeks.push(DATA.slice(i,Math.min(i+7,DATA.length)));
+
+  let html='';
+  weeks.forEach((wk,wi)=>{
+    const wn=wi+1;
+    const filtered=wk.filter(d=>{
+      if(fMode==='pend'&&dayDone(d))return false;
+      if(fMode==='done'&&!dayDone(d))return false;
+      if(activeDisc&&d.disc!==activeDisc)return false;
+      if(fSearch){
+        const s=fSearch.toLowerCase();
+        if(!d.disc.toLowerCase().includes(s)&&!d.blocks.some(b=>b.topics.some(t=>t.t.toLowerCase().includes(s))))return false;
+      }
+      return true;
+    });
+    if(!filtered.length)return;
+
+    const allKeys=wk.flatMap(d=>allTopics(d));
+    const wDone=allKeys.filter(k=>S.t[k]).length;
+    const wPct=allKeys.length?Math.round(wDone/allKeys.length*100):0;
+
+    const discSet=[...new Set(wk.map(d=>d.disc).filter(x=>x!=='Revisão'))].slice(0,4);
+    const discTags=discSet.map(name=>{
+      const d=dc(name);
+      return `<span class="wk-disc-tag" style="background:${d.bg};color:${d.c}">${name}</span>`;
+    }).join('');
+
+    const collapsed=colW[wn];
+    html+=`<div class="week${collapsed?' collapsed':''}" id="wk${wn}">
+      <div class="wk-head" onclick="togWk(${wn})">
+        <span class="wk-n">Semana ${wn}</span>
+        <div class="wk-discs">${discTags}</div>
+        <span class="wk-dates">${dayDate(wk[0].d)} → ${dayDate(wk[wk.length-1].d)}</span>
+        <div class="wk-prog">
+          <div class="wk-bar"><div class="wk-fill" style="width:${wPct}%"></div></div>
+          <span class="wk-pct">${wPct}%</span>
+        </div>
+        <span class="wk-arrow">▾</span>
+      </div>
+      <div class="wk-body">${filtered.map(d=>renderDay(d)).join('')}</div>
+    </div>`;
+  });
+
+  cont.innerHTML=html||'<div style="padding:40px;text-align:center;color:var(--tx3)">Nenhum resultado encontrado.</div>';
+  updateStats();
+}
+
+function renderDay(d){
+  const done=dayDone(d);
+  const pct=dayPct(d);
+  const dsc=dc(d.disc);
+  const qv=S.q[d.d]||0;
+  const qp=d.q?Math.min(100,Math.round(qv/d.q*100)):0;
+
+  return `<div class="day-card${done?' d-done':''}" id="dc${d.d}">
+    <div class="dc-head">
+      <div class="dc-num" style="background:${dsc.bg};color:${dsc.c}">${String(d.d).padStart(2,'0')}</div>
+      <div class="dc-info">
+        <div class="disc-label" style="color:${dsc.c}">${d.disc}</div>
+        <div class="disc-date">Dia ${String(d.d).padStart(2,'0')} · 5h de estudo</div>
+      </div>
+      <div class="dc-right">
+        <span class="dc-done-tag">✓ Dia completo</span>
+        <div class="dc-pbar"><div class="dc-pfill" style="width:${pct}%"></div></div>
+        <span class="dc-ppct">${pct}%</span>
+        <label class="dc-chkall"><input type="checkbox" ${done?'checked':''} onchange="togAll(${d.d},this.checked)">Tudo</label>
+      </div>
+    </div>
+    <div class="dc-schedule">
+      ${d.blocks.map((b,bi)=>renderBlock(d,b,bi)).join('')}
+    </div>
+    <div class="dc-qrow">
+      <span class="dc-qlabel">📝 Questões feitas hoje:</span>
+      <input class="dc-qinput" type="number" min="0" value="${qv}"
+        onchange="setQ(${d.d},this.value)" onclick="event.stopPropagation()">
+      <span class="dc-qmeta">/ ${d.q} planejadas</span>
+      <span class="dc-qpct" style="color:${qp>=100?'var(--G)':'var(--tx3)'}">· ${qp}%</span>
+    </div>
+  </div>`;
+}
+
+function renderBlock(d,b,bi){
+  return `<div class="sched-block">
+    <div class="sched-block-head">
+      <span class="sched-block-title">${b.title}</span>
+      <span class="sched-block-dur">${b.dur}</span>
+    </div>
+    <div class="sched-block-body">
+      ${b.topics.map((t,ti)=>{
+        const k=tk(d.d,bi,ti);
+        const done=S.t[k]||false;
+        return `<div class="topic${done?' t-done':''}" onclick="togT('${k}',${d.d})">
+          <input type="checkbox" ${done?'checked':''} onclick="event.stopPropagation();togT('${k}',${d.d})">
+          <span class="t-txt">${t.t}</span>
+          <span class="t-badge b${t.b}">${t.b==='H'?'Alto':t.b==='M'?'Médio':t.b==='L'?'Baixo':t.b==='R'?'Revisão':'Questões'}</span>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════
+// ACTIONS
+// ═══════════════════════════════════════════════
+function togT(k,dayNum){
+  S.t[k]=!S.t[k];save();refreshDay(dayNum);updateStats();
+}
+function togAll(dayNum,val){
+  const d=DATA.find(x=>x.d===dayNum);
+  allTopics(d).forEach(k=>{S.t[k]=val});
+  save();refreshDay(dayNum);updateStats();
+}
+function setQ(dayNum,val){
+  S.q[dayNum]=Math.max(0,parseInt(val)||0);save();updateStats();
+}
+function refreshDay(dn){
+  const d=DATA.find(x=>x.d===dn);if(!d)return;
+  const el=document.getElementById('dc'+dn);if(!el)return;
+  const done=dayDone(d),pct=dayPct(d);
+  el.className='day-card'+(done?' d-done':'');
+  el.querySelector('.dc-pfill').style.width=pct+'%';
+  el.querySelector('.dc-ppct').textContent=pct+'%';
+  el.querySelector('.dc-chkall input').checked=done;
+  d.blocks.forEach((b,bi)=>{
+    b.topics.forEach((t,ti)=>{
+      const k=tk(dn,bi,ti);const isDone=S.t[k]||false;
+      const items=el.querySelectorAll('.topic');
+      const idx=d.blocks.slice(0,bi).reduce((s,bb)=>s+bb.topics.length,0)+ti;
+      const item=items[idx];if(!item)return;
+      item.className='topic'+(isDone?' t-done':'');
+      item.querySelector('input').checked=isDone;
+    });
+  });
+}
+function togWk(n){
+  colW[n]=!colW[n];
+  const el=document.getElementById('wk'+n);
+  if(el)el.className='week'+(colW[n]?' collapsed':'');
+}
+function setFilt(m,btn){
+  fMode=m;
+  document.querySelectorAll('.fbar-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');render();
+}
+function filtDisc(name,el){
+  if(activeDisc===name){
+    activeDisc='';
+    document.querySelectorAll('.chip').forEach(c=>{c.style.opacity='1';c.style.fontWeight='600'});
+  }else{
+    activeDisc=name;
+    document.querySelectorAll('.chip').forEach(c=>{c.style.opacity='.4';c.style.fontWeight='400'});
+    el.style.opacity='1';el.style.fontWeight='700';
+  }
+  render();
+}
+function doSearch(){fSearch=document.getElementById('srch').value;render();}
+
+// ═══════════════════════════════════════════════
+// STATS
+// ═══════════════════════════════════════════════
+function updateStats(){
+  const tot=totalTopics(),done=doneTopics(),pct=tot?Math.round(done/tot*100):0;
+  const daysDone=DATA.filter(d=>dayDone(d)).length;
+  const qTot=totalQ();
+  const rem=Math.max(0,Math.round((EXAM-new Date())/86400000));
+
+  document.getElementById('hpf').style.width=pct+'%';
+  document.getElementById('hpct').textContent=pct+'%';
+  document.getElementById('cdnum').textContent=rem;
+
+  document.getElementById('st-top').textContent=done;
+  document.getElementById('st-days').textContent=daysDone;
+  document.getElementById('st-q').textContent=qTot;
+  document.getElementById('st-h').textContent=(daysDone*5)+'h';
+  document.getElementById('st-rem').textContent=rem;
+  document.getElementById('bigfill').style.width=pct+'%';
+  document.getElementById('big-done').textContent=done+' de '+tot+' tópicos feitos';
+  document.getElementById('big-pct').textContent=pct+'%';
+
+  // disc bars
+  const dm={};
+  DATA.forEach(d=>{
+    if(!dm[d.disc])dm[d.disc]={tot:0,done:0};
+    allTopics(d).forEach(k=>{
+      dm[d.disc].tot++;
+      if(S.t[k])dm[d.disc].done++;
+    });
+  });
+  document.getElementById('disc-bars').innerHTML=Object.entries(dm).map(([name,{tot,done}])=>{
+    const p=tot?Math.round(done/tot*100):0;
+    const c=dc(name);
+    return `<div class="db-item">
+      <div class="db-name" style="color:${c.c}">${name}</div>
+      <div class="db-bar"><div class="db-fill" style="width:${p}%;background:${c.c}"></div></div>
+      <div class="db-meta"><span>${done}/${tot}</span><span>${p}%</span></div>
+    </div>`;
+  }).join('');
+
+  // q grid
+  const qm={};
+  DATA.forEach(d=>{
+    if(!qm[d.disc])qm[d.disc]=0;
+    qm[d.disc]+=(S.q[d.d]||0);
+  });
+  const qentries=Object.entries(qm).filter(([,v])=>v>0);
+  document.getElementById('q-grid').innerHTML=qentries.length
+    ?qentries.map(([name,q])=>{
+        const c=dc(name);
+        return `<div class="q-dcard">
+          <div class="qdn" style="color:${c.c}">${name}</div>
+          <div class="qnum" style="color:${c.c}">${q}</div>
+          <div class="qlbl">questões feitas</div>
+        </div>`;
+      }).join('')
+    :'<span style="color:var(--tx3);font-size:12px">Registre questões no cronograma para ver aqui.</span>';
+
+  // heatmap
+  document.getElementById('hmap').innerHTML=DATA.map(d=>{
+    const p=dayPct(d);
+    const cls=p===0?'':p===100?'hf':'hp';
+    return `<div class="hm ${cls}" title="Dia ${d.d}: ${d.disc} — ${p}%">${d.d}</div>`;
+  }).join('');
+}
+
+
+
+// ═══════════════════════════════════════════════
+// DASHBOARD DATA
+// ═══════════════════════════════════════════════
+
+const LEIS = [
+  {id:'l01', name:'CP — Código Penal (Parte Geral: Arts. 1º-120)', p:'H'},
+  {id:'l02', name:'CP — Parte Especial: crimes contra a pessoa (Arts. 121-154)', p:'H'},
+  {id:'l03', name:'CP — Crimes patrimoniais e sexuais (Arts. 155-234-B)', p:'H'},
+  {id:'l04', name:'CP — Crimes contra a adm. pública (Arts. 312-359-H)', p:'H'},
+  {id:'l05', name:'CPP — Inquérito, ação penal, prisões (Arts. 1º-350)', p:'H'},
+  {id:'l06', name:'CPP — Provas, nulidades, recursos (Arts. 351-667)', p:'H'},
+  {id:'l07', name:'CF/88 — Arts. 1º-17 (Direitos Fundamentais)', p:'H'},
+  {id:'l08', name:'CF/88 — Arts. 37-41 e Art. 144 (Adm. Pública e Seg.)', p:'H'},
+  {id:'l09', name:'Lei 13.964/19 — Pacote Anticrime (integral)', p:'H'},
+  {id:'l10', name:'Lei 12.850/13 — Organização Criminosa (integral)', p:'H'},
+  {id:'l11', name:'Lei 11.343/06 — Lei de Drogas (Arts. 28-63)', p:'H'},
+  {id:'l12', name:'Lei 8.072/90 — Crimes Hediondos (integral)', p:'H'},
+  {id:'l13', name:'Lei 14.133/21 — Nova Licitações (Arts. 1º-60)', p:'H'},
+  {id:'l14', name:'Lei 8.429/92 — Improbidade (Arts. 9º-12 + reforma)', p:'H'},
+  {id:'l15', name:'Lei 8.112/90 — Servidores Federais (Arts. 1º-182)', p:'H'},
+  {id:'l16', name:'Lei 9.296/96 — Interceptação Telefônica (integral)', p:'M'},
+  {id:'l17', name:'Lei 11.340/06 — Lei Maria da Penha (integral)', p:'M'},
+  {id:'l18', name:'Lei 14.735/23 — Lei Orgânica PCDF (integral)', p:'M'},
+  {id:'l19', name:'Lei 9.605/98 — Crimes Ambientais (Arts. 29-82)', p:'M'},
+  {id:'l20', name:'CTN — Arts. 113-182 (Crédito Tributário)', p:'M'},
+  {id:'l21', name:'Lei 7.960/89 — Prisão Temporária (integral)', p:'M'},
+  {id:'l22', name:'Lei 13.869/19 — Abuso de Autoridade (integral)', p:'M'},
+  {id:'l23', name:'LC-DF 840/2011 — Servidores DF (pontos principais)', p:'L'},
+  {id:'l24', name:'Lei 13.675/18 — SUSP (pontos principais)', p:'L'},
+];
+
+const JURIS = [
+  // SÚMULAS VINCULANTES
+  {id:'j01', txt:'SV 11 — Uso de algemas apenas em casos excepcionais de resistência e perigo real', tp:'SV', disc:'Proc.Penal'},
+  {id:'j02', txt:'SV 14 — Acesso do defensor aos autos do inquérito policial sigiloso', tp:'SV', disc:'Proc.Penal'},
+  {id:'j03', txt:'SV 13 — Vedação ao nepotismo na administração pública direta e indireta', tp:'SV', disc:'Administrativo'},
+  {id:'j04', txt:'SV 5 — Falta de defesa técnica por advogado no PAD não viola CF', tp:'SV', disc:'Administrativo'},
+  {id:'j05', txt:'SV 3 — Contraditório em processo administrativo disciplinar', tp:'SV', disc:'Administrativo'},
+  {id:'j06', txt:'SV 24 — Crime de lavagem de dinheiro: prescinde de condenação prévia', tp:'SV', disc:'Penal'},
+  // STF
+  {id:'j07', txt:'STF: Tráfico privilegiado (Art. 33 §4º) não é hediondo — HC 118.533', tp:'STF', disc:'Penal'},
+  {id:'j08', txt:'STF: Feminicídio é qualificadora objetiva; não exclui privilégio — ADI 7.013', tp:'STF', disc:'Penal'},
+  {id:'j09', txt:'STF: Legítima defesa da honra não é tese legítima no Tribunal do Júri', tp:'STF', disc:'Penal'},
+  {id:'j10', txt:'STF: Progressão de regime em crimes hediondos — regime inicial não é obrigatoriamente fechado', tp:'STF', disc:'Penal'},
+  {id:'j11', txt:'STF: Busca e apreensão domiciliar sem mandado exige flagrante ou autorização — RE 603.616', tp:'STF', disc:'Proc.Penal'},
+  {id:'j12', txt:'STF: Juiz das garantias — ADI 6.298 — implementação progressiva', tp:'STF', disc:'Proc.Penal'},
+  {id:'j13', txt:'STF: Prova obtida mediante compartilhamento de dados fiscais — RE 1.055.941', tp:'STF', disc:'Proc.Penal'},
+  {id:'j14', txt:'STF: Responsabilidade civil objetiva do Estado por omissão — RE 841.526', tp:'STF', disc:'Administrativo'},
+  {id:'j15', txt:'STF: Concurso de pessoas em crimes próprios — autoria mediata admitida', tp:'STF', disc:'Penal'},
+  {id:'j16', txt:'STF: Art. 28 da Lei de Drogas — não criminaliza o porte para uso pessoal', tp:'STF', disc:'Penal'},
+  {id:'j17', txt:'STF: Inviolabilidade domiciliar e fundada suspeita — HC 203.405', tp:'STF', disc:'Constitucional'},
+  {id:'j18', txt:'STF: Confisco de bem utilizado no tráfico de drogas é constitucional', tp:'STF', disc:'Penal'},
+  // STJ
+  {id:'j19', txt:'STJ: Estupro de vulnerável — presunção absoluta, prescinde de violência real — Súmula 593', tp:'STJ', disc:'Penal'},
+  {id:'j20', txt:'STJ: Roubo — causa de aumento pelo emprego de arma de fogo sem apreensão — Súmula 443', tp:'STJ', disc:'Penal'},
+  {id:'j21', txt:'STJ: Latrocínio consumado ainda que vítima sobreviva se houver subtração — Súmula 610', tp:'STJ', disc:'Penal'},
+  {id:'j22', txt:'STJ: Colaboração premiada — natureza jurídica de negócio jurídico processual', tp:'STJ', disc:'Proc.Penal'},
+  {id:'j23', txt:'STJ: Cadeia de custódia — violação gera nulidade relativa (necessidade de demonstrar prejuízo)', tp:'STJ', disc:'Proc.Penal'},
+  {id:'j24', txt:'STJ: Prisão preventiva — fundamentação genérica é ilegal — Súmula 697', tp:'STJ', disc:'Proc.Penal'},
+  {id:'j25', txt:'STJ: Interceptação telefônica — renovação de prazo de 15 dias não está limitada a número fixo', tp:'STJ', disc:'Proc.Penal'},
+  {id:'j26', txt:'STJ: Improbidade administrativa — dolo específico necessário após Lei 14.230/21', tp:'STJ', disc:'Administrativo'},
+  {id:'j27', txt:'STJ: Furto qualificado pelo rompimento de obstáculo — Súmula 511', tp:'STJ', disc:'Penal'},
+  {id:'j28', txt:'STJ: Tráfico de drogas — causas de aumento do Art. 40 são independentes e cumuláveis', tp:'STJ', disc:'Penal'},
+  {id:'j29', txt:'STJ: Estelionato — competência pelo local do proveito obtido — Súmula 244', tp:'STJ', disc:'Proc.Penal'},
+  {id:'j30', txt:'STJ: Violência doméstica — lesão corporal leve — ação penal pública incondicionada — Súmula 542', tp:'STJ', disc:'Penal'},
+];
+
+// ═══════════════════════════════════════════════
+// DASHBOARD STATE (stored in S.dash)
+// S.dash.leis = {id: bool}
+// S.dash.juris = {id: bool}
+// ═══════════════════════════════════════════════
+if(!S.dash) S.dash = {leis:{}, juris:{}};
+
+function saveDash(){ localStorage.setItem('pcdf26v2', JSON.stringify(S)); }
+
+// ─── TODAY ───
+function getDayNum(){
+  const today = new Date();
+  const diff = Math.round((today - START) / 86400000) + 1;
+  return Math.max(1, Math.min(86, diff));
+}
+
+function renderDashToday(){
+  const dn = getDayNum();
+  const d = DATA.find(x=>x.d===dn);
+  if(!d){ document.getElementById('dash-today').innerHTML='<div style="color:var(--tx3);font-size:12px">Prova concluída! 🎉</div>'; return; }
+  const dsc = dc(d.disc);
+  document.getElementById('dt-disc').textContent = d.disc;
+  document.getElementById('dt-disc').style.color = dsc.c;
+  document.getElementById('dt-date').textContent = `Dia ${d.d} · ${dayDate(d.d)}`;
+  document.getElementById('dt-blocks').innerHTML = d.blocks.map(b=>`
+    <div class="today-block">
+      <span class="today-block-title">${b.title}</span>
+      <span style="font-size:10px;color:var(--tx3);background:var(--bd);padding:2px 7px;border-radius:4px;font-family:'JetBrains Mono',monospace;flex-shrink:0">${b.dur}</span>
+    </div>`).join('');
+}
+
+// ─── WEEK ───
+function renderDashWeek(){
+  const dn = getDayNum();
+  const weekStart = Math.floor((dn-1)/7)*7+1;
+  const days = DATA.slice(weekStart-1, weekStart+6);
+  const names = ['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'];
+  document.getElementById('dash-week').innerHTML = days.map((d,i)=>{
+    const pct = dayPct(d);
+    const isDone = pct===100;
+    const isToday = d.d===dn;
+    const cls = isDone?'wd-done':isToday?'wd-today':d.d>dn?'wd-future':'';
+    const dsc = dc(d.disc);
+    return `<div class="wd-cell ${cls}" title="Dia ${d.d}: ${d.disc}">
+      <div class="wd-n">${names[i]||'—'}</div>
+      <div class="wd-disc" style="color:${dsc.c}">${d.disc.split('.')[0]}</div>
+      <div class="wd-pct">${pct}%</div>
+    </div>`;
+  }).join('');
+}
+
+// ─── RING ───
+function renderDashRing(){
+  const tot = totalTopics(), done = doneTopics();
+  const pct = tot?Math.round(done/tot*100):0;
+  const circ = 238.76;
+  const offset = circ - (circ * pct/100);
+  document.getElementById('dash-ring').setAttribute('stroke-dashoffset', offset.toFixed(2));
+  document.getElementById('dash-rpct').textContent = pct+'%';
+
+  // sub-bars per discipline
+  const dm = {};
+  DATA.forEach(d=>{
+    if(!dm[d.disc]) dm[d.disc]={tot:0,done:0};
+    allTopics(d).forEach(k=>{ dm[d.disc].tot++; if(S.t[k]) dm[d.disc].done++; });
+  });
+  const top4 = Object.entries(dm)
+    .filter(([n])=>n!=='Revisão')
+    .sort((a,b)=>b[1].tot-a[1].tot)
+    .slice(0,4);
+  document.getElementById('dash-rsub').innerHTML = top4.map(([name,{tot,done}])=>{
+    const p = tot?Math.round(done/tot*100):0;
+    const c = dc(name);
+    return `<div class="ring-sub-row">
+      <span style="font-size:11px;color:${c.c};font-weight:600;min-width:90px">${name}</span>
+      <div class="ring-sub-bar"><div class="ring-sub-fill" style="width:${p}%;background:${c.c}"></div></div>
+      <span style="font-size:10px;color:var(--tx3);font-family:'JetBrains Mono',monospace">${p}%</span>
+    </div>`;
+  }).join('');
+}
+
+// ─── MINI STATS ───
+function renderDashMini(){
+  const daysDone = DATA.filter(d=>dayDone(d)).length;
+  const qTot = totalQ();
+  document.getElementById('ds-days').textContent = daysDone;
+  document.getElementById('ds-q').textContent = qTot;
+  document.getElementById('ds-h').textContent = (daysDone*5)+'h';
+
+  // meta questões
+  const meta = 2580;
+  const mpct = Math.min(100, Math.round(qTot/meta*100));
+  document.getElementById('mq-done').textContent = qTot.toLocaleString('pt-BR');
+  document.getElementById('mq-bar').style.width = mpct+'%';
+}
+
+// ─── LEIS SECA ───
+function renderLeis(){
+  const done = LEIS.filter(l=>S.dash.leis[l.id]).length;
+  document.getElementById('lei-prog-txt').textContent = `${done} / ${LEIS.length} lidas`;
+  document.getElementById('lei-prog-bar').style.width = Math.round(done/LEIS.length*100)+'%';
+  document.getElementById('leis-list').innerHTML = LEIS.map(l=>{
+    const isDone = S.dash.leis[l.id]||false;
+    return `<div class="lei-item${isDone?' lei-done':''}" onclick="togLei('${l.id}')">
+      <input class="lei-cb" type="checkbox" ${isDone?'checked':''} onclick="event.stopPropagation();togLei('${l.id}')">
+      <span class="lei-name">${l.name}</span>
+      <span class="lei-priority lei-p-${l.p}">${l.p==='H'?'Alta':l.p==='M'?'Média':'Baixa'}</span>
+    </div>`;
+  }).join('');
+}
+
+function togLei(id){
+  S.dash.leis[id] = !S.dash.leis[id];
+  saveDash(); renderLeis();
+  renderDashRing(); renderDashMini();
+}
+
+// ─── JURISPRUDÊNCIA ───
+let activeJurisFilter = 'all';
+function renderJuris(){
+  const filtered = activeJurisFilter==='all' ? JURIS : JURIS.filter(j=>j.tp===activeJurisFilter);
+  const done = JURIS.filter(j=>S.dash.juris[j.id]).length;
+  document.getElementById('juris-prog-txt').textContent = `${done} / ${JURIS.length} estudados`;
+  document.getElementById('juris-prog-bar').style.width = Math.round(done/JURIS.length*100)+'%';
+  document.getElementById('juris-list').innerHTML = filtered.map(j=>{
+    const isDone = S.dash.juris[j.id]||false;
+    const tagCls = j.tp==='STF'?'j-stf':j.tp==='STJ'?'j-stj':'j-sv';
+    return `<div class="juris-item${isDone?' jdone':''}" onclick="togJuris('${j.id}')">
+      <input class="j-cb" type="checkbox" ${isDone?'checked':''} onclick="event.stopPropagation();togJuris('${j.id}')">
+      <span class="j-text">${j.txt}</span>
+      <span class="j-tag ${tagCls}">${j.tp}</span>
+    </div>`;
+  }).join('');
+}
+
+function togJuris(id){
+  S.dash.juris[id] = !S.dash.juris[id];
+  saveDash(); renderJuris();
+}
+
+function showJuris(tp, btn){
+  activeJurisFilter = tp;
+  document.querySelectorAll('.juris-tab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderJuris();
+}
+
+// ─── FULL DASHBOARD RENDER ───
+function renderDash(){
+  renderDashToday();
+  renderDashWeek();
+  renderDashRing();
+  renderDashMini();
+  renderLeis();
+  renderJuris();
+}
+
+// ═══════════════════════════════════════════════
+// TABS
+// ═══════════════════════════════════════════════
+function goTab(name,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('p-'+name).classList.add('on');
+  btn.classList.add('on');
+  if(name==='prog')updateStats();
+  if(name==='dash')renderDash();
+}
+
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded',()=>{
+  buildChips();render();updateStats();renderDash();
+  setInterval(()=>{
+    document.getElementById('cdnum').textContent=Math.max(0,Math.round((EXAM-new Date())/86400000));
+  },60000);
+});
+
+</script>
+</body>
+</html>
